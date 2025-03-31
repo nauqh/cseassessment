@@ -13,14 +13,14 @@ export interface ExamContent {
   content: Question[];
 }
 
-const s3Client = new S3Client({ region: "ap-southeast-2" });
+const s3Client = new S3Client({ region: "ap-southeast-1" });
 
 async function getExamDataFromS3(examId: string): Promise<ExamContent> {
   try {
     const response = await s3Client.send(
       new GetObjectCommand(
         {
-          Bucket: "csexam",
+          Bucket: "cseassessment",
           Key: `exams/${examId}.json`
         }
       )

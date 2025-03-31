@@ -42,21 +42,36 @@ export default function FinalClient({ examId }: { examId: string }) {
 		// Multiple choice answers
 		markdown += `## MULTICHOICE\n\n`;
 		const multichoiceAnswers = Object.entries(examResults.answers)
-			.filter(([_, answer]: [string, { type: string; answer: string | string[] }]) => answer.type === "multichoice")
-			.map(([index, answer]: [string, { type: string; answer: string | string[] }]) => ({ 
-				index, 
-				answer: answer.answer 
-			}));
-		
+			.filter(
+				([_, answer]: [
+					string,
+					{ type: string; answer: string | string[] }
+				]) => answer.type === "multichoice"
+			)
+			.map(
+				([index, answer]: [
+					string,
+					{ type: string; answer: string | string[] }
+				]) => ({
+					index,
+					answer: answer.answer,
+				})
+			);
+
 		if (multichoiceAnswers.length > 0) {
-			multichoiceAnswers.forEach((item: { index: string, answer: string | string[] }, index: number) => {
-				markdown += `### Question ${index + 1}\n`;
-				if (Array.isArray(item.answer)) {
-					markdown += `Answer: ${item.answer.join(", ")}\n`;
-				} else {
-					markdown += `Answer: ${item.answer}\n`;
+			multichoiceAnswers.forEach(
+				(
+					item: { index: string; answer: string | string[] },
+					index: number
+				) => {
+					markdown += `### Question ${index + 1}\n`;
+					if (Array.isArray(item.answer)) {
+						markdown += `Answer: ${item.answer.join(", ")}\n`;
+					} else {
+						markdown += `Answer: ${item.answer}\n`;
+					}
 				}
-			});
+			);
 		} else {
 			markdown += `No multiple choice answers submitted.\n\n`;
 		}
@@ -67,54 +82,62 @@ export default function FinalClient({ examId }: { examId: string }) {
 			localStorage.getItem("problemAnswers") || "{}"
 		);
 		const problemEntries = Object.entries(localProblemAnswers);
-		
+
 		if (problemEntries.length > 0) {
-			problemEntries.forEach(([problem, data]: [string, ProblemAnswer]) => {
-				markdown += `### Problem ${problem}\n`;
-				
-				if (data.language === "file") {
-					markdown += `**Submission Type:** File Upload\n`;
-					if (data.files && data.files.length > 0) {
-						markdown += `**Uploaded Files:**\n`;
-						data.files.forEach((file: {name: string, size: number}) => {
-							markdown += `- ${file.name} (${Math.round(file.size / 1024)} KB)\n`;
-						});
-						markdown += `\n`;
-					} else {
-						markdown += `No files uploaded.\n`;
-					}
-				} else if (data.language === "link") {
-					markdown += `**Submission Type:** External Link\n`;
-					if (data.links && data.links.length > 0) {
-						markdown += `**Solution Links:**\n`;
-						data.links.forEach((link: LinkData) => {
-							markdown += `- [${link.url}](${link.url})`;
-							if (link.description) {
-								markdown += ` - "${link.description}"`;
-							}
+			problemEntries.forEach(
+				([problem, data]: [string, ProblemAnswer]) => {
+					markdown += `### Problem ${problem}\n`;
+
+					if (data.language === "file") {
+						markdown += `**Submission Type:** File Upload\n`;
+						if (data.files && data.files.length > 0) {
+							markdown += `**Uploaded Files:**\n`;
+							data.files.forEach(
+								(file: { name: string; size: number }) => {
+									markdown += `- ${file.name} (${Math.round(
+										file.size / 1024
+									)} KB)\n`;
+								}
+							);
 							markdown += `\n`;
-						});
-						markdown += `\n`;
+						} else {
+							markdown += `No files uploaded.\n`;
+						}
+					} else if (data.language === "link") {
+						markdown += `**Submission Type:** External Link\n`;
+						if (data.links && data.links.length > 0) {
+							markdown += `**Solution Links:**\n`;
+							data.links.forEach((link: LinkData) => {
+								markdown += `- [${link.url}](${link.url})`;
+								if (link.description) {
+									markdown += ` - "${link.description}"`;
+								}
+								markdown += `\n`;
+							});
+							markdown += `\n`;
+						} else {
+							markdown += `No links provided.\n`;
+						}
 					} else {
-						markdown += `No links provided.\n`;
+						markdown += `**Submission Type:** ${data.language} Code\n`;
+						markdown += "```" + data.language + "\n";
+						markdown += `${data.code}\n`;
+						markdown += "```\n";
 					}
-				} else {
-					markdown += `**Submission Type:** ${data.language} Code\n`;
-					markdown += "```" + data.language + "\n";
-					markdown += `${data.code}\n`;
-					markdown += "```\n";
 				}
-			});
+			);
 		} else {
 			markdown += `No programming problems submitted.\n`;
 		}
 
 		// Create blob and download it
-		const blob = new Blob([markdown], { type: 'text/markdown' });
+		const blob = new Blob([markdown], { type: "text/markdown" });
 		const url = URL.createObjectURL(blob);
-		const a = document.createElement('a');
+		const a = document.createElement("a");
 		a.href = url;
-		a.download = `${examResults.exam_name}_Submission_${new Date().toISOString().slice(0, 10)}.md`;
+		a.download = `${examResults.exam_name}_Submission_${new Date()
+			.toISOString()
+			.slice(0, 10)}.md`;
 		document.body.appendChild(a);
 		a.click();
 		document.body.removeChild(a);
@@ -140,25 +163,29 @@ export default function FinalClient({ examId }: { examId: string }) {
 			exam_id: examId,
 			exam_name: examDict[examId],
 			answers: [
-				...Object.entries(multichoiceAnswers).map(([key, answer]: [string, string | string[]]) => ({
-					answer,
-					type: "multichoice",
-					files: undefined,
-					links: undefined
-				})),
-				...Object.entries(problemAnswers).map(([_, answer]: [string, ProblemAnswer]) => ({
-					answer: answer.code,
-					type: answer.language,
-					files: answer.files || undefined,
-					links: answer.links || undefined,
-				})),
+				...Object.entries(multichoiceAnswers).map(
+					([key, answer]: [string, string | string[]]) => ({
+						answer,
+						type: "multichoice",
+						files: undefined,
+						links: undefined,
+					})
+				),
+				...Object.entries(problemAnswers).map(
+					([_, answer]: [string, ProblemAnswer]) => ({
+						answer: answer.code,
+						type: answer.language,
+						files: answer.files || undefined,
+						links: answer.links || undefined,
+					})
+				),
 			],
 		};
 
 		try {
 			console.log(JSON.stringify(examResults));
 			const response = await fetch(
-				"https://cspyclient.up.railway.app/submissions",
+				"https://cseassessment.up.railway.app/submissions",
 				{
 					method: "POST",
 					headers: {
@@ -216,7 +243,8 @@ export default function FinalClient({ examId }: { examId: string }) {
 										Question {question}
 									</p>
 									<p className="text-gray-600">
-										Answer: {Array.isArray(answer) 
+										Answer:{" "}
+										{Array.isArray(answer)
 											? answer.join(", ")
 											: answer}
 									</p>

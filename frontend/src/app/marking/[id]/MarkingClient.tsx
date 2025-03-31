@@ -4,7 +4,14 @@ import React, { useState, useEffect } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { AlertCircle, FileText, Link as LinkIcon, Copy, Maximize2, Download } from "lucide-react";
+import {
+	AlertCircle,
+	FileText,
+	Link as LinkIcon,
+	Copy,
+	Maximize2,
+	Download,
+} from "lucide-react";
 import CodeOutput from "@/components/CodeOutput";
 import { Button } from "@/components/ui/button";
 import {
@@ -102,7 +109,7 @@ export default function MarkingClient({
 		const fetchSubmission = async () => {
 			try {
 				const response = await fetch(
-					`https://cspyclient.up.railway.app/submissions/${submissionId}`
+					`https://cseassessment.up.railway.app/submissions/${submissionId}`
 				);
 
 				if (!response.ok) {
@@ -131,7 +138,9 @@ export default function MarkingClient({
 	// Check if feedback differs from summary
 	useEffect(() => {
 		if (submission) {
-			const feedbackDiffersFromSummary = feedback !== submission.summary && feedback !== (submission.feedback || "");
+			const feedbackDiffersFromSummary =
+				feedback !== submission.summary &&
+				feedback !== (submission.feedback || "");
 			setFeedbackChanged(feedbackDiffersFromSummary);
 		}
 	}, [feedback, submission]);
@@ -158,22 +167,23 @@ export default function MarkingClient({
 		if (feedbackChanged) {
 			toast({
 				title: "Warning",
-				description: "You have unsaved feedback changes. Please save your feedback first.",
+				description:
+					"You have unsaved feedback changes. Please save your feedback first.",
 				className: "bg-yellow-100 text-yellow-900",
 				duration: 5000,
 			});
 			return;
 		}
-		
+
 		// Get the shareable URL for the solution
 		const shareableUrl = getSolutionFileUrl().replace(
 			"/preview",
 			"/view?usp=drive_link"
 		);
-		
+
 		// Use feedback or fall back to submission summary if feedback is empty
-		const feedbackContent = feedback || (submission?.summary || "");
-		
+		const feedbackContent = feedback || submission?.summary || "";
+
 		// Format the full feedback message
 		const fullFeedbackMessage = `
 
@@ -184,7 +194,7 @@ Solution: ${shareableUrl}
 
 View your submission: https://csassessment.it.com/submissions/${submissionId}
 		`.trim();
-		
+
 		navigator.clipboard.writeText(fullFeedbackMessage);
 		setCopiedFullFeedback(true);
 		setTimeout(() => setCopiedFullFeedback(false), 2000);
@@ -196,7 +206,7 @@ View your submission: https://csassessment.it.com/submissions/${submissionId}
 		setSavingFeedback(true);
 		try {
 			const response = await fetch(
-				`https://cspyclient.up.railway.app/submissions/${submissionId}/feedback`,
+				`https://cseassessment.up.railway.app/submissions/${submissionId}/feedback`,
 				{
 					method: "PUT",
 					headers: {
@@ -479,14 +489,17 @@ View your submission: https://csassessment.it.com/submissions/${submissionId}
 									className="w-full min-h-[500px] font-mono text-sm p-4 bg-slate-50 rounded-md focus:outline-none focus:ring-0 resize-y"
 									placeholder="Add your feedback here. This will be stored alongside the autograded summary."
 								/>
-								
+
 								{feedbackChanged && (
 									<div className="mt-2 p-2 bg-yellow-50 border border-yellow-300 rounded-md text-yellow-700 text-sm flex items-center gap-2">
 										<AlertCircle size={16} />
-										<span>You have unsaved changes. Don't forget to save your feedback.</span>
+										<span>
+											You have unsaved changes. Don't
+											forget to save your feedback.
+										</span>
 									</div>
 								)}
-								
+
 								<div className="mt-6 flex justify-end">
 									<button
 										onClick={handleCopyFullFeedback}
@@ -565,8 +578,8 @@ function AnswerCard({
 			case "python":
 			case "sql":
 				// Handle array case for code output
-				const codeContent = Array.isArray(answer.answer) 
-					? answer.answer.join('\n') 
+				const codeContent = Array.isArray(answer.answer)
+					? answer.answer.join("\n")
 					: answer.answer;
 				return <CodeOutput data={codeContent} />;
 
@@ -631,7 +644,8 @@ function AnswerCard({
 												variant="outline"
 												className="text-xs"
 											>
-												{(file.size / 1024).toFixed(1)} KB
+												{(file.size / 1024).toFixed(1)}{" "}
+												KB
 											</Badge>
 											<Dialog>
 												<DialogTrigger asChild>
@@ -682,11 +696,18 @@ function AnswerCard({
 																		"a"
 																	);
 																a.href = url;
-																a.download = file.name;
-																document.body.appendChild(a);
+																a.download =
+																	file.name;
+																document.body.appendChild(
+																	a
+																);
 																a.click();
-																document.body.removeChild(a);
-																URL.revokeObjectURL(url);
+																document.body.removeChild(
+																	a
+																);
+																URL.revokeObjectURL(
+																	url
+																);
 															}}
 														>
 															<Download className="h-4 w-4" />

@@ -39,7 +39,7 @@ export default function ProfilePage() {
 			try {
 				setIsLoading(true);
 				const response = await fetch(
-					`https://cspyclient.up.railway.app/submissions?email=${user?.emailAddresses}`
+					`https://cseassessment.up.railway.app/submissions?email=${user?.emailAddresses}`
 				);
 
 				if (response.status === 404) {

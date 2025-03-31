@@ -153,7 +153,7 @@ if __name__ == "__main__":
     exam_id = "M11"
 
     response = requests.get(
-        f"https://cspyclient.up.railway.app/submissions/{exam_id}/{email}"
+        f"https://cseassessment.up.railway.app/submissions/{exam_id}/{email}"
     )
 
     if response.status_code != 200:

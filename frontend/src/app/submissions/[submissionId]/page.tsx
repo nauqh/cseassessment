@@ -10,7 +10,7 @@ export default async function ReviewPage({
 
 	// First fetch the submission using submissionId
 	const submissionResponse = await fetch(
-		`https://cspyclient.up.railway.app/submissions/${submissionId}`
+		`https://cseassessment.up.railway.app/submissions/${submissionId}`
 	);
 
 	if (!submissionResponse.ok) {

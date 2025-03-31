@@ -4,8 +4,20 @@ import { Button } from "@/components/ui/button";
 import CodeMirror from "@uiw/react-codemirror";
 import { keymap } from "@codemirror/view";
 import { Prec } from "@codemirror/state";
-import { BiHelpCircle, BiNetworkChart, BiX, BiUpload, BiLinkAlt, BiPlus, BiEdit } from "react-icons/bi";
-import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable";
+import {
+	BiHelpCircle,
+	BiNetworkChart,
+	BiX,
+	BiUpload,
+	BiLinkAlt,
+	BiPlus,
+	BiEdit,
+} from "react-icons/bi";
+import {
+	ResizableHandle,
+	ResizablePanel,
+	ResizablePanelGroup,
+} from "@/components/ui/resizable";
 import { useRouter } from "next/navigation";
 import {
 	Select,
@@ -77,7 +89,9 @@ export default function ProblemClient({
 	const [submittedLinks, setSubmittedLinks] = useState<LinkData[]>([]);
 	const [currentLink, setCurrentLink] = useState("");
 	const [currentLinkDescription, setCurrentLinkDescription] = useState("");
-	const [editingLinkIndex, setEditingLinkIndex] = useState<number | null>(null);
+	const [editingLinkIndex, setEditingLinkIndex] = useState<number | null>(
+		null
+	);
 
 	useEffect(() => {
 		const savedAnswers = localStorage.getItem("problemAnswers");
@@ -175,18 +189,19 @@ export default function ProblemClient({
 		try {
 			setOutput({ output: "Executing...", language });
 			const response = await fetch(
-				"https://cspyclient.up.railway.app/execute",
+				"https://cseassessment.up.railway.app/execute",
 				{
 					method: "POST",
 					headers: { "Content-Type": "application/json" },
 					body: JSON.stringify({
 						code: code,
 						language: language,
-						database: examId === "M11" 
-							? "northwind" 
-							: examId === "M12" 
-								? "chinook" 
-								: null
+						database:
+							examId === "M11"
+								? "northwind"
+								: examId === "M12"
+								? "chinook"
+								: null,
 					}),
 				}
 			);
@@ -218,7 +233,11 @@ export default function ProblemClient({
 			return;
 		}
 
-		if (language === "link" && submittedLinks.length === 0 && !currentLink) {
+		if (
+			language === "link" &&
+			submittedLinks.length === 0 &&
+			!currentLink
+		) {
 			toast({
 				description: "Please add at least one link before submitting",
 				className: "bg-yellow-100 text-yellow-900 border-none",
@@ -226,10 +245,11 @@ export default function ProblemClient({
 			});
 			return;
 		}
-		
+
 		if (language === "file" && uploadedFiles.length === 0) {
 			toast({
-				description: "Please upload at least one file before submitting",
+				description:
+					"Please upload at least one file before submitting",
 				className: "bg-yellow-100 text-yellow-900 border-none",
 				duration: 3000,
 			});
@@ -289,14 +309,16 @@ export default function ProblemClient({
 	};
 
 	// Function to detect link type based on URL
-	const detectLinkType = (url: string): "github" | "codepen" | "jsfiddle" | "replit" | "other" => {
+	const detectLinkType = (
+		url: string
+	): "github" | "codepen" | "jsfiddle" | "replit" | "other" => {
 		if (!url) return "other";
-		
+
 		if (url.includes("github.com")) return "github";
 		if (url.includes("codepen.io")) return "codepen";
 		if (url.includes("jsfiddle.net")) return "jsfiddle";
 		if (url.includes("replit.com")) return "replit";
-		
+
 		return "other";
 	};
 
@@ -312,7 +334,7 @@ export default function ProblemClient({
 
 	// Handle link input keydown for Enter key
 	const handleLinkKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-		if (e.key === 'Enter' && !e.shiftKey) {
+		if (e.key === "Enter" && !e.shiftKey) {
 			e.preventDefault();
 			handleAddLink();
 		}
@@ -331,7 +353,8 @@ export default function ProblemClient({
 
 		if (!isValidUrl(currentLink)) {
 			toast({
-				description: "Please enter a valid URL format (e.g., https://example.com)",
+				description:
+					"Please enter a valid URL format (e.g., https://example.com)",
 				className: "bg-yellow-100 text-yellow-900 border-none",
 				duration: 3000,
 			});
@@ -376,7 +399,7 @@ export default function ProblemClient({
 
 		// Also update code state with the URLs to maintain backward compatibility
 		const urlsText = [...submittedLinks, { url: currentLink }]
-			.map(link => link.url)
+			.map((link) => link.url)
 			.join("\n");
 		setCode(urlsText);
 	};
@@ -393,14 +416,14 @@ export default function ProblemClient({
 	const handleRemoveLink = (index: number) => {
 		const updatedLinks = submittedLinks.filter((_, i) => i !== index);
 		setSubmittedLinks(updatedLinks);
-		
+
 		// Also update code state with the remaining URLs
-		const urlsText = updatedLinks.map(link => link.url).join("\n");
+		const urlsText = updatedLinks.map((link) => link.url).join("\n");
 		setCode(urlsText);
 	};
 
 	// Link icon mapping
-	const getLinkIcon = (type: LinkData['type']) => {
+	const getLinkIcon = (type: LinkData["type"]) => {
 		switch (type) {
 			case "github":
 				return "🔗 GitHub";
@@ -442,24 +465,26 @@ export default function ProblemClient({
 
 	// Custom keymap to override Shift+Enter and Ctrl+Enter behavior
 	const customKeymap = useCallback(() => {
-		return Prec.highest(keymap.of([
-			{
-				key: "Shift-Enter",
-				preventDefault: true,
-				run: () => {
-					handleSubmit();
-					return true;
-				}
-			},
-			{
-				key: "Mod-Enter", // Mod is Ctrl on Windows/Linux and Cmd on Mac
-				preventDefault: true,
-				run: () => {
-					handleRunCode();
-					return true;
-				}
-			}
-		]));
+		return Prec.highest(
+			keymap.of([
+				{
+					key: "Shift-Enter",
+					preventDefault: true,
+					run: () => {
+						handleSubmit();
+						return true;
+					},
+				},
+				{
+					key: "Mod-Enter", // Mod is Ctrl on Windows/Linux and Cmd on Mac
+					preventDefault: true,
+					run: () => {
+						handleRunCode();
+						return true;
+					},
+				},
+			])
+		);
 	}, [handleSubmit, handleRunCode]);
 
 	// Add memoization for code output
@@ -600,12 +625,22 @@ export default function ProblemClient({
 										<SelectValue />
 									</SelectTrigger>
 									<SelectContent>
-										<SelectItem value="python">Python</SelectItem>
-										<SelectItem value="pandas">Pandas</SelectItem>
+										<SelectItem value="python">
+											Python
+										</SelectItem>
+										<SelectItem value="pandas">
+											Pandas
+										</SelectItem>
 										<SelectItem value="sql">SQL</SelectItem>
-										<SelectItem value="text">Text</SelectItem>
-										<SelectItem value="link">Link</SelectItem>
-										<SelectItem value="file">File</SelectItem>
+										<SelectItem value="text">
+											Text
+										</SelectItem>
+										<SelectItem value="link">
+											Link
+										</SelectItem>
+										<SelectItem value="file">
+											File
+										</SelectItem>
 									</SelectContent>
 								</Select>
 							</div>
@@ -615,120 +650,168 @@ export default function ProblemClient({
 									<div className="p-4 h-full overflow-y-auto">
 										<div className="mb-4">
 											<label className="block text-sm font-medium text-gray-700 mb-2">
-												{editingLinkIndex !== null ? "Edit solution link:" : "Add solution link:"}
+												{editingLinkIndex !== null
+													? "Edit solution link:"
+													: "Add solution link:"}
 											</label>
-											
+
 											<div className="flex flex-col space-y-3">
 												<div className="flex space-x-2">
 													<Input
 														ref={linkInputRef}
 														type="url"
 														value={currentLink}
-														onChange={(e) => setCurrentLink(e.target.value)}
-														onKeyDown={handleLinkKeyDown}
+														onChange={(e) =>
+															setCurrentLink(
+																e.target.value
+															)
+														}
+														onKeyDown={
+															handleLinkKeyDown
+														}
 														placeholder="https://example.com/your-solution"
 														className="flex-1 p-2 border rounded-md focus:ring-2 focus:ring-primary"
 													/>
-													<Button 
-														onClick={handleAddLink} 
+													<Button
+														onClick={handleAddLink}
 														size="sm"
 														className="whitespace-nowrap"
 													>
-														{editingLinkIndex !== null ? (
+														{editingLinkIndex !==
+														null ? (
 															<>
-																<BiEdit className="mr-1 h-4 w-4" /> Update
+																<BiEdit className="mr-1 h-4 w-4" />{" "}
+																Update
 															</>
 														) : (
 															<>
-																<BiPlus className="mr-1 h-4 w-4" /> Add Link
+																<BiPlus className="mr-1 h-4 w-4" />{" "}
+																Add Link
 															</>
 														)}
 													</Button>
 												</div>
-												
+
 												<div>
 													<label className="block text-xs font-medium text-gray-600 mb-1">
 														Description (optional):
 													</label>
 													<Input
 														type="text"
-														value={currentLinkDescription}
-														onChange={(e) => setCurrentLinkDescription(e.target.value)}
-														onKeyDown={handleLinkKeyDown}
+														value={
+															currentLinkDescription
+														}
+														onChange={(e) =>
+															setCurrentLinkDescription(
+																e.target.value
+															)
+														}
+														onKeyDown={
+															handleLinkKeyDown
+														}
 														placeholder="Briefly describe what this link contains"
 														className="w-full p-2 border rounded-md focus:ring-2 focus:ring-primary"
 													/>
 												</div>
 											</div>
-											
+
 											<div className="mt-2 flex items-center">
 												<BiLinkAlt className="h-4 w-4 text-gray-500 mr-1" />
 												<p className="text-xs text-gray-500">
-													Submit links to your solutions (GitHub, CodePen, JSFiddle, etc.). Maximum 3 links per problem.
+													Submit links to your
+													solutions (GitHub, CodePen,
+													JSFiddle, etc.). Maximum 3
+													links per problem.
 												</p>
 											</div>
-											
+
 											{isValidUrl(currentLink) && (
 												<div className="mt-2 p-2 bg-blue-50 rounded-md border border-blue-100">
 													<p className="text-xs text-blue-600">
-														Link type detected: <strong>{getLinkIcon(detectLinkType(currentLink))}</strong>
+														Link type detected:{" "}
+														<strong>
+															{getLinkIcon(
+																detectLinkType(
+																	currentLink
+																)
+															)}
+														</strong>
 													</p>
 												</div>
 											)}
 										</div>
-										
+
 										{/* Display submitted links */}
 										{submittedLinks.length > 0 && (
 											<div className="mt-6">
 												<h3 className="text-sm font-medium text-gray-700 mb-2">
-													Submitted Links ({submittedLinks.length}/3):
+													Submitted Links (
+													{submittedLinks.length}/3):
 												</h3>
 												<div className="space-y-3">
-													{submittedLinks.map((link, index) => (
-														<div 
-															key={link.id} 
-															className="p-3 bg-gray-50 rounded-md border border-gray-200 shadow-sm transition hover:shadow-md"
-														>
-															<div className="flex items-center justify-between">
-																<div className="flex items-center">
-																	<span className="text-sm font-medium mr-2">
-																		{getLinkIcon(link.type)}
-																	</span>
-																</div>
-																<div className="flex space-x-2">
-																	<button
-																		onClick={() => handleEditLink(index)}
-																		className="p-1 text-blue-500 rounded hover:bg-blue-50"
-																		title="Edit this link"
-																	>
-																		<BiEdit className="h-4 w-4" />
-																	</button>
-																	<button
-																		onClick={() => handleRemoveLink(index)}
-																		className="p-1 text-red-500 rounded hover:bg-red-50"
-																		title="Remove this link"
-																	>
-																		<BiX className="h-4 w-4" />
-																	</button>
-																</div>
-															</div>
-															
-															<a 
-																href={link.url} 
-																target="_blank" 
-																rel="noopener noreferrer"
-																className="text-blue-600 hover:underline text-sm break-all mt-1 block"
+													{submittedLinks.map(
+														(link, index) => (
+															<div
+																key={link.id}
+																className="p-3 bg-gray-50 rounded-md border border-gray-200 shadow-sm transition hover:shadow-md"
 															>
-																{link.url}
-															</a>
-															
-															{link.description && (
-																<p className="mt-1 text-xs text-gray-600 italic">
-																	"{link.description}"
-																</p>
-															)}
-														</div>
-													))}
+																<div className="flex items-center justify-between">
+																	<div className="flex items-center">
+																		<span className="text-sm font-medium mr-2">
+																			{getLinkIcon(
+																				link.type
+																			)}
+																		</span>
+																	</div>
+																	<div className="flex space-x-2">
+																		<button
+																			onClick={() =>
+																				handleEditLink(
+																					index
+																				)
+																			}
+																			className="p-1 text-blue-500 rounded hover:bg-blue-50"
+																			title="Edit this link"
+																		>
+																			<BiEdit className="h-4 w-4" />
+																		</button>
+																		<button
+																			onClick={() =>
+																				handleRemoveLink(
+																					index
+																				)
+																			}
+																			className="p-1 text-red-500 rounded hover:bg-red-50"
+																			title="Remove this link"
+																		>
+																			<BiX className="h-4 w-4" />
+																		</button>
+																	</div>
+																</div>
+
+																<a
+																	href={
+																		link.url
+																	}
+																	target="_blank"
+																	rel="noopener noreferrer"
+																	className="text-blue-600 hover:underline text-sm break-all mt-1 block"
+																>
+																	{link.url}
+																</a>
+
+																{link.description && (
+																	<p className="mt-1 text-xs text-gray-600 italic">
+																		"
+																		{
+																			link.description
+																		}
+																		"
+																	</p>
+																)}
+															</div>
+														)
+													)}
 												</div>
 											</div>
 										)}
@@ -747,7 +830,10 @@ export default function ProblemClient({
 															Files
 														</span>
 														<span className="text-xs text-gray-500">
-															{uploadedFiles.length}/3 files
+															{
+																uploadedFiles.length
+															}
+															/3 files
 														</span>
 													</div>
 													<div className="border-2 border-dashed border-gray-300 rounded-md p-6 mt-2 text-center">
@@ -756,28 +842,38 @@ export default function ProblemClient({
 															type="file"
 															accept=".java,.py,.js,.c,.cpp,.sql,.html,.css,.tsx,.jsx,.ts"
 															multiple
-															onChange={handleFileUpload}
+															onChange={
+																handleFileUpload
+															}
 															className="hidden"
 														/>
 														<div className="space-y-2">
 															<BiUpload className="mx-auto h-10 w-10 text-gray-400" />
 															<p className="text-sm text-gray-500">
-																Drag and drop files, or{" "}
+																Drag and drop
+																files, or{" "}
 																<button
 																	type="button"
-																	onClick={() => fileInputRef.current?.click()}
+																	onClick={() =>
+																		fileInputRef.current?.click()
+																	}
 																	className="text-blue-500 hover:text-blue-700 font-medium"
 																>
 																	browse
 																</button>
 															</p>
 															<p className="text-xs text-gray-400">
-																Accepted formats: .java, .py, .js, .c, .cpp, .sql, .html, .css, .tsx, .jsx, .ts
+																Accepted
+																formats: .java,
+																.py, .js, .c,
+																.cpp, .sql,
+																.html, .css,
+																.tsx, .jsx, .ts
 															</p>
 														</div>
 													</div>
 												</div>
-												
+
 												{/* Display uploaded files */}
 												{uploadedFiles.length > 0 && (
 													<div className="mt-4">
@@ -785,36 +881,57 @@ export default function ProblemClient({
 															Uploaded files:
 														</h3>
 														<div className="space-y-2">
-															{uploadedFiles.map((file, index) => (
-																<div
-																	key={index}
-																	className="flex items-center justify-between p-3 bg-gray-50 rounded-md border border-gray-200"
-																>
-																	<div className="flex items-center">
-																		<span className="truncate max-w-xs">
-																			{file.name}
-																		</span>
-																		<span className="ml-2 text-xs text-gray-500">
-																			({Math.round(file.size / 1024)} KB)
-																		</span>
-																	</div>
-																	<button
-																		type="button"
-																		onClick={() => removeFile(index)}
-																		className="p-1 text-red-500 rounded hover:bg-red-50"
-																		title="Remove file"
+															{uploadedFiles.map(
+																(
+																	file,
+																	index
+																) => (
+																	<div
+																		key={
+																			index
+																		}
+																		className="flex items-center justify-between p-3 bg-gray-50 rounded-md border border-gray-200"
 																	>
-																		<BiX className="h-4 w-4" />
-																	</button>
-																</div>
-															))}
+																		<div className="flex items-center">
+																			<span className="truncate max-w-xs">
+																				{
+																					file.name
+																				}
+																			</span>
+																			<span className="ml-2 text-xs text-gray-500">
+																				(
+																				{Math.round(
+																					file.size /
+																						1024
+																				)}{" "}
+																				KB)
+																			</span>
+																		</div>
+																		<button
+																			type="button"
+																			onClick={() =>
+																				removeFile(
+																					index
+																				)
+																			}
+																			className="p-1 text-red-500 rounded hover:bg-red-50"
+																			title="Remove file"
+																		>
+																			<BiX className="h-4 w-4" />
+																		</button>
+																	</div>
+																)
+															)}
 														</div>
 													</div>
 												)}
-												
+
 												{uploadedFiles.length === 0 && (
 													<p className="text-sm text-gray-500 italic">
-														No files uploaded yet. Please upload at least one file for your solution.
+														No files uploaded yet.
+														Please upload at least
+														one file for your
+														solution.
 													</p>
 												)}
 											</div>
@@ -827,13 +944,18 @@ export default function ProblemClient({
 										height="100%"
 										onChange={handleCodeChange}
 										className="h-full 2xl:text-xl"
-										extensions={[customKeymap(), EditorView.lineWrapping]}
+										extensions={[
+											customKeymap(),
+											EditorView.lineWrapping,
+										]}
 									/>
 								)}
 							</div>
 						</ResizablePanel>
 
-						{language !== "text" && language !== "link" && language !== "file" ? (
+						{language !== "text" &&
+						language !== "link" &&
+						language !== "file" ? (
 							<>
 								<ResizableHandle className="w-1 bg-gray-50 hover:bg-gray-100 cursor-col-resize" />
 
@@ -851,7 +973,10 @@ export default function ProblemClient({
 
 									{/* Action buttons */}
 									<div className="flex gap-4 justify-end mt-auto pt-2">
-										<Button variant="outline" onClick={handleReset}>
+										<Button
+											variant="outline"
+											onClick={handleReset}
+										>
 											Reset
 										</Button>
 										<Button
@@ -860,11 +985,15 @@ export default function ProblemClient({
 										>
 											Run Code
 										</Button>
-										<Button onClick={handleSubmit}>Submit</Button>
-										{Object.keys(answeredProblems).length ===
-											data.content.length && (
+										<Button onClick={handleSubmit}>
+											Submit
+										</Button>
+										{Object.keys(answeredProblems)
+											.length === data.content.length && (
 											<Button
-												onClick={() => setShowSummary(true)}
+												onClick={() =>
+													setShowSummary(true)
+												}
 												variant="success"
 											>
 												Review
@@ -883,14 +1012,21 @@ export default function ProblemClient({
 									className="h-52 p-4 border-t flex flex-col"
 								>
 									<div className="flex gap-4 justify-end mt-auto pt-2">
-										<Button variant="outline" onClick={handleReset}>
+										<Button
+											variant="outline"
+											onClick={handleReset}
+										>
 											Reset
 										</Button>
-										<Button onClick={handleSubmit}>Submit</Button>
-										{Object.keys(answeredProblems).length ===
-											data.content.length && (
+										<Button onClick={handleSubmit}>
+											Submit
+										</Button>
+										{Object.keys(answeredProblems)
+											.length === data.content.length && (
 											<Button
-												onClick={() => setShowSummary(true)}
+												onClick={() =>
+													setShowSummary(true)
+												}
 												variant="success"
 											>
 												Review
@@ -922,15 +1058,17 @@ export default function ProblemClient({
 									<p className="font-semibold">
 										Problem {index + 1}:
 									</p>
-									
+
 									{/* Show different content based on language type */}
-									{answeredProblems[index + 1]?.language === "file" ? (
+									{answeredProblems[index + 1]?.language ===
+									"file" ? (
 										<div className="mt-2">
 											{/* <p className="text-sm text-gray-600">
 												Solution submitted as file upload
 											</p> */}
 										</div>
-									) : answeredProblems[index + 1]?.language === "link" ? (
+									) : answeredProblems[index + 1]
+											?.language === "link" ? (
 										<div className="mt-2">
 											{/* <p className="text-sm text-gray-600">
 												Solution submitted as links
@@ -938,8 +1076,8 @@ export default function ProblemClient({
 										</div>
 									) : (
 										<pre className="bg-gray-50 p-2 mt-1 rounded overflow-x-auto whitespace-pre-wrap">
-											{answeredProblems[index + 1]?.code ||
-												"No code submitted"}
+											{answeredProblems[index + 1]
+												?.code || "No code submitted"}
 										</pre>
 									)}
 
@@ -972,7 +1110,7 @@ export default function ProblemClient({
 												</div>
 											</div>
 										)}
-									
+
 									{answeredProblems[index + 1]?.links &&
 										answeredProblems[index + 1]?.links!
 											.length > 0 && (
@@ -985,9 +1123,9 @@ export default function ProblemClient({
 														index + 1
 													]?.links!.map((link) => (
 														<li key={link.id}>
-															<a 
-																href={link.url} 
-																target="_blank" 
+															<a
+																href={link.url}
+																target="_blank"
 																rel="noopener noreferrer"
 																className="text-blue-600 hover:underline text-sm break-all"
 															>
@@ -995,7 +1133,11 @@ export default function ProblemClient({
 															</a>
 															{link.description && (
 																<span className="block text-gray-500 italic text-xs ml-2 overflow-hidden text-ellipsis">
-																	"{link.description}"
+																	"
+																	{
+																		link.description
+																	}
+																	"
 																</span>
 															)}
 														</li>

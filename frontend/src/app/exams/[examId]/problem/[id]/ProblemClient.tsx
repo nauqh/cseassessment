@@ -103,7 +103,7 @@ export default function ProblemClient({
 		try {
 			setOutput({ output: "Executing...", language });
 			const response = await fetch(
-				"https://cspyclient.up.railway.app/execute",
+				"https://cseassessment.up.railway.app/execute",
 				{
 					method: "POST",
 					headers: { "Content-Type": "application/json" },
