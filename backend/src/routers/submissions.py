@@ -9,6 +9,8 @@ from ..database import DbSession
 from .. import models
 from .exams import exam_exists
 
+from loguru import logger
+
 router = APIRouter(prefix="/submissions", tags=["Submissions"])
 
 
@@ -86,6 +88,7 @@ async def add_submission(data: Submission, db: DbSession):
         }
     except Exception as e:
         db.rollback()
+        logger.error(f"Error processing submission: {e}")
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=f"Failed to process submission: {str(e)}"
