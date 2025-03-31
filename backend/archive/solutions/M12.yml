@@ -2,7 +2,7 @@ config:
     resources:
         database:
             type: "sqlite"
-            source: "https://github.com/nauqh/cspyclient/blob/master/db/chinook.db?raw=true"
+            source: "https://github.com/nauqh/cseassessment/blob/master/backend/db/chinook.db?raw=true"
             filename: "chinook.db"
 
 1:

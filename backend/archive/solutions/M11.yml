@@ -2,7 +2,7 @@ config:
     resources:
         database:
             type: "sqlite"
-            source: "https://github.com/nauqh/csautograde/blob/master/northwind.db?raw=true"
+            source: "https://github.com/nauqh/cseassessment/blob/master/backend/db/northwind.db?raw=true"
             filename: "northwind.db"
 
 1:
