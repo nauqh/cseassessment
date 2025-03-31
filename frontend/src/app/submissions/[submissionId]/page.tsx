@@ -4,7 +4,7 @@ import { getExamQuestions, getExamProblemQuestions } from "@/lib/questions";
 export default async function ReviewPage({
 	params,
 }: {
-	params: Promise<{ submissionId: number }>;
+	params: Promise<{ submissionId: string }>;
 }) {
 	const { submissionId } = await params;
 
