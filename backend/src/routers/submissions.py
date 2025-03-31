@@ -2,6 +2,7 @@ from fastapi import HTTPException, APIRouter, status
 from sqlalchemy.orm import Session
 from ..csautograde import Autograder
 from ..websocket import manager
+from uuid import UUID
 
 from ..schemas import SubmissionResponse, Submission
 from ..database import DbSession
@@ -24,7 +25,7 @@ async def notify_discord_bot(submission_data):
     notification = {
         "type": "submission",
         "content": {
-            "submission_id": submission_data.id,
+            "submission_id": str(submission_data.id),
             "exam_name": submission_data.exam_name,
             "email": submission_data.email,
             "answers": submission_data.answers,
@@ -83,7 +84,7 @@ async def add_submission(data: Submission, db: DbSession):
 
         return {
             "summary": summary,
-            "submission_id": submission.id
+            "submission_id": str(submission.id)  # Convert UUID to string
         }
     except Exception as e:
         db.rollback()
@@ -116,7 +117,7 @@ async def get_submission(exam: str, email: str, db: DbSession):
 
 
 @router.get("/{submission_id}", response_model=SubmissionResponse)
-async def get_specific_submission(submission_id: str, db: DbSession):
+async def get_specific_submission(submission_id: UUID, db: DbSession):
     """Get a specific submission by exam ID, email, and submission ID.
 
     Args:
