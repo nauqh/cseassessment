@@ -1,0 +1,11 @@
+config:
+    resources:
+        database:
+            type: "postgresql"
+            connection:
+                host: "localhost"
+                database: "northwind"
+                user: "postgres"
+                password: "password"
+                port: 5432
+# ...rest of exam configuration...

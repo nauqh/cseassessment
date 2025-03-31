@@ -1,0 +1,11 @@
+python-dotenv
+sqlalchemy
+fastapi[all]
+psycopg2-binary
+requests
+pandas
+boto3
+pyyaml
+pandas
+aiohttp
+loguru

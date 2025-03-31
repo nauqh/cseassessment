@@ -1,0 +1,96 @@
+config:
+    resources:
+        dataframe:
+            source: "db/salaries.csv"
+            preprocess:
+                - type: drop_columns
+                  columns: ["Notes", "Status", "Agency"]
+                - type: title_case
+                  columns: ["JobTitle"]
+
+1:
+    type: MULTICHOICE
+    answer:
+        - "D"
+2:
+    type: MULTICHOICE
+    answer:
+        - "A"
+3:
+    type: MULTICHOICE
+    answer:
+        - "A"
+4:
+    type: MULTICHOICE
+    answer:
+        - "B"
+5:
+    type: MULTICHOICE
+    answer:
+        - "B"
+6:
+    type: MULTICHOICE
+    answer:
+        - "A"
+7:
+    type: MULTICHOICE
+    answer:
+        - "C"
+8:
+    type: MULTICHOICE
+    answer:
+        - "A"
+9:
+    type: MULTICHOICE
+    answer:
+        - "D"
+10:
+    type: MULTICHOICE
+    answer:
+        - "C"
+11:
+    type: EXPRESSION
+    answer: |
+        df.loc[df['TotalPay']>df['TotalPay'].mean(), 'JobTitle'].nunique()
+12:
+    type: EXPRESSION
+    answer: |
+        (df.loc[df['Year'] == 2013, 'JobTitle'].value_counts() == 1).sum()
+13:
+    type: EXPRESSION
+    answer: |
+        df[df['TotalPay']>df['TotalPay'].mean()]
+14:
+    type: EXPRESSION
+    answer: |
+        df.groupby('JobTitle')['OvertimePay'].sum().nlargest(5)
+15:
+    type: EXPRESSION
+    answer: |
+        df.nlargest(3, 'TotalPayBenefits')[['EmployeeName', 'TotalPayBenefits']]
+16:
+    type: EXPRESSION
+    answer: |
+        df.groupby('JobTitle')['Benefits'].mean()[lambda x: x < 1000]
+17:
+    type: EXPRESSION
+    answer: |
+        df['JobTitle'].value_counts()[lambda x: x > 100].reset_index()
+18:
+    type: EXPRESSION
+    answer: |
+        df[df['OvertimePay'] / df['TotalPay'] > 0.5][['EmployeeName', 'JobTitle', 'OvertimePay', 'TotalPay']]
+19:
+    type: EXPRESSION
+    answer: |
+        df['JobTitle'].value_counts().head()
+20:
+    type: EXPRESSION
+    answer: |
+        # df['JobTitle'].value_counts().head().index
+        pd.pivot_table(
+            data=df[df['JobTitle'].isin(df['JobTitle'].value_counts().head().index)],
+            index=['JobTitle'],
+            columns=['Year'],
+            values=['BasePay', 'OvertimePay', 'TotalPay']
+        )

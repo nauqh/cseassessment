@@ -1,0 +1,152 @@
+config:
+    resources:
+        database:
+            type: "sqlite"
+            source: "https://github.com/nauqh/cspyclient/blob/master/db/chinook.db?raw=true"
+            filename: "chinook.db"
+
+1:
+    type: MULTICHOICE
+    answer:
+        - "B"
+2:
+    type: MULTICHOICE
+    answer:
+        - "B"
+3:
+    type: MULTICHOICE
+    answer:
+        - "D"
+4:
+    type: MULTICHOICE
+    answer:
+        - "A"
+        - "B"
+5:
+    type: MULTICHOICE
+    answer:
+        - "D"
+6:
+    type: MULTICHOICE
+    answer:
+        - "B"
+        - "D"
+7:
+    type: MULTICHOICE
+    answer:
+        - "C"
+8:
+    type: MULTICHOICE
+    answer:
+        - "B"
+9:
+    type: MULTICHOICE
+    answer:
+        - "B"
+10:
+    type: MULTICHOICE
+    answer:
+        - "A"
+        - "B"
+11:
+    type: SQL
+    answer: |
+        SELECT t.Name AS "Track Name", a.Title AS "Album Title"
+        FROM Track t
+        JOIN Album a ON t.AlbumId = a.AlbumId
+        JOIN Artist ar ON a.ArtistId = ar.ArtistId
+        WHERE ar.Name = 'The Rolling Stones'
+        ORDER BY a.Title, t.Name;
+12:
+    type: SQL
+    answer: |
+        SELECT p.Name AS "Playlist", COUNT(pt.TrackId) AS "Number of Tracks"
+        FROM Playlist p
+        JOIN PlaylistTrack pt ON p.PlaylistId = pt.PlaylistId
+        GROUP BY p.PlaylistId, p.Name
+        ORDER BY COUNT(pt.TrackId) DESC;
+13:
+    type: SQL
+    answer: |
+        SELECT a.Title AS "Album", SUM(il.UnitPrice * il.Quantity) AS "Total Revenue"
+        FROM Album a
+        JOIN Track t ON a.AlbumId = t.AlbumId
+        JOIN InvoiceLine il ON t.TrackId = il.TrackId
+        GROUP BY a.AlbumId, a.Title
+        ORDER BY SUM(il.UnitPrice * il.Quantity) DESC;
+14:
+    type: SQL
+    answer: |
+        SELECT STRFTIME('%Y', InvoiceDate) AS "Year", COUNT(*) AS "Number of Invoices"
+        FROM Invoice
+        GROUP BY STRFTIME('%Y', InvoiceDate)
+        ORDER BY STRFTIME('%Y', InvoiceDate);
+15:
+    type: SQL
+    answer: |
+        SELECT c.FirstName || ' ' || c.LastName AS "Customer", SUM(i.Total) AS "Total Sales"
+        FROM Customer c
+        JOIN Invoice i ON c.CustomerId = i.CustomerId
+        GROUP BY c.CustomerId, c.FirstName, c.LastName
+        HAVING SUM(i.Total) > 40
+        ORDER BY SUM(i.Total) DESC;
+16:
+    type: SQL
+    answer: |
+        SELECT m.FirstName || ' ' || m.LastName AS "Manager", COUNT(e.EmployeeId) AS "Number of Direct Reports"
+        FROM Employee e
+        JOIN Employee m ON e.ReportsTo = m.EmployeeId
+        GROUP BY m.EmployeeId, m.FirstName, m.LastName
+        ORDER BY m.FirstName || ' ' || m.LastName;
+17:
+    type: SQL
+    answer: |
+        SELECT 
+            c.CustomerId,
+            c.FirstName || ' ' || c.LastName AS "Customer",
+            i.InvoiceDate,
+            i.Total,
+            SUM(i.Total) OVER (
+                PARTITION BY c.CustomerId 
+                ORDER BY i.InvoiceDate
+                ROWS UNBOUNDED PRECEDING
+            ) AS "Cumulative Sales"
+        FROM Customer c
+        JOIN Invoice i ON c.CustomerId = i.CustomerId
+        ORDER BY c.CustomerId, i.InvoiceDate;
+18:
+    type: SQL
+    answer: |
+        SELECT 
+            a.AlbumId,
+            a.Title,
+            SUM(il.UnitPrice * il.Quantity) AS "Total Sales",
+            RANK() OVER (ORDER BY SUM(il.UnitPrice * il.Quantity) DESC) AS "Rank"
+        FROM Album a
+        JOIN Track t ON a.AlbumId = t.AlbumId
+        JOIN InvoiceLine il ON t.TrackId = il.TrackId
+        GROUP BY a.AlbumId, a.Title
+        ORDER BY "Rank";
+19:
+    type: SQL
+    answer: |
+        SELECT 
+            c.FirstName || ' ' || c.LastName AS "Customer",
+            STRFTIME('%Y-%m', i.InvoiceDate) AS "Month",
+            SUM(i.Total) AS "Total"
+        FROM Customer c
+        JOIN Invoice i ON c.CustomerId = i.CustomerId
+        GROUP BY c.CustomerId, c.FirstName || ' ' || c.LastName, STRFTIME('%Y-%m', i.InvoiceDate)
+        ORDER BY c.FirstName || ' ' || c.LastName, STRFTIME('%Y-%m', i.InvoiceDate);
+20:
+    type: SQL
+    answer: |
+        SELECT 
+            c.FirstName || ' ' || c.LastName AS "Customer",
+            STRFTIME('%Y-%m', i.InvoiceDate) AS "Month",
+            SUM(i.Total) AS "Total"
+        FROM Customer c
+        JOIN Invoice i ON c.CustomerId = i.CustomerId
+        GROUP BY c.CustomerId, c.FirstName || ' ' || c.LastName, STRFTIME('%Y-%m', i.InvoiceDate)
+        HAVING SUM(i.Total) > 45
+        ORDER BY c.FirstName || ' ' || c.LastName, STRFTIME('%Y-%m', i.InvoiceDate);
