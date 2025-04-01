@@ -149,10 +149,13 @@ if __name__ == "__main__":
 
     from schemas import Submission
 
-    submissionId = "1a5eebdd-e3cd-43be-9b2c-cff22787a0e9"
+    submissionId11 = "1a5eebdd-e3cd-43be-9b2c-cff22787a0e9"
+    submissionId12 = "07f95cf4-80e3-4711-ad77-a4cefc628b3a"
+    submissionId21 = "b41cadb2-9aa5-4d04-aa98-0efd12fe0b28"
+    submissionId31 = "bb6aeaa5-4204-4846-a027-0575b497548b"
 
     response = requests.get(
-        f"https://cseassessment.up.railway.app/submissions/{submissionId}"
+        f"https://cseassessment.up.railway.app/submissions/{submissionId21}"
     )
 
     if response.status_code != 200:
