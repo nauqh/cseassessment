@@ -149,11 +149,10 @@ if __name__ == "__main__":
 
     from schemas import Submission
 
-    email = "quan.do@gmail.com"
-    exam_id = "M11"
+    submissionId = "1a5eebdd-e3cd-43be-9b2c-cff22787a0e9"
 
     response = requests.get(
-        f"https://cseassessment.up.railway.app/submissions/{exam_id}/{email}"
+        f"https://cseassessment.up.railway.app/submissions/{submissionId}"
     )
 
     if response.status_code != 200:
@@ -164,6 +163,6 @@ if __name__ == "__main__":
 
         import json
         print(json.dumps(submission.__dict__, indent=2))
-        # autograder = Autograder(submission)
-        # autograder.grade_submission()
-        # autograder.display_summary()
+        autograder = Autograder(submission)
+        autograder.grade_submission()
+        autograder.display_summary()

@@ -7,6 +7,10 @@ import yaml
 import json
 from loguru import logger
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 class ResourceManager:
     def __init__(self, config):
