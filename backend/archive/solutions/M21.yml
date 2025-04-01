@@ -27,13 +27,13 @@ config:
     type: MULTICHOICE
 6:
     answer:
-        - A
-        - C
+        - a
+        - c
     type: MULTICHOICE
 7:
     answer:
-        - C
-        - D
+        - c
+        - d
     type: MULTICHOICE
 8:
     answer:
