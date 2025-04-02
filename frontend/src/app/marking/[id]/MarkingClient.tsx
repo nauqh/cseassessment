@@ -192,6 +192,10 @@ ${feedbackContent}
 \`\`\`
 Solution: ${shareableUrl}
 
+${(submission?.score && submission.score < 80) 
+  ? "❗You have FAILED the exam. Please retake the exam in order to unlock new module." 
+  : "🎉 Congratulations! You have PASSED the exam."}
+
 View your submission: https://csassessment.it.com/submissions/${submissionId}
 		`.trim();
 
