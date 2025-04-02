@@ -33,7 +33,7 @@ async def notify_discord_bot(submission_data):
             "submission": submission_response
         }
     }
-    print(notification)
+    # logger.info(notification)
     await manager.broadcast(notification)
 
 
