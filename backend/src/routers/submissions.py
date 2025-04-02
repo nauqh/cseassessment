@@ -165,7 +165,7 @@ async def get_all_submissions(email: str, db: DbSession):
 
 
 @router.put("/{submission_id}/feedback", status_code=status.HTTP_200_OK)
-async def add_submission_feedback(submission_id: int, feedback: dict, db: DbSession):
+async def add_submission_feedback(submission_id: UUID, feedback: dict, db: DbSession):
     """Add feedback to a specific submission and update the score.
 
     This endpoint stores the provided feedback text and parses the 'FINAL SCORE' 
