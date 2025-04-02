@@ -1,11 +1,10 @@
 python-dotenv
 sqlalchemy
 fastapi[all]
-psycopg2-binary
+psycopg[binary]
 requests
 pandas
 boto3
 pyyaml
-pandas
 aiohttp
 loguru
