@@ -1,6 +1,6 @@
 import pandas as pd
 import sqlite3
-import psycopg2
+import psycopg
 import requests
 import boto3
 import yaml
@@ -54,7 +54,7 @@ class ResourceManager:
     def _init_postgres_db(self, config):
         """Initialize PostgreSQL database"""
         conn_params = config.get('connection', {})
-        return psycopg2.connect(**conn_params)
+        return psycopg.connect(**conn_params)
 
     def _init_dataframe(self, config):
         """Initialize and preprocess dataframe"""
