@@ -4,16 +4,14 @@ from .schemas import CodeExecution, Language, HelpRequest
 from .csautograde.utils import Utils
 from .websocket import manager
 from .csautograde.resource_manager import ResourceManager
-import pandas as pd
-import numpy as np
-
-# Database
 from . import models
 from .database import engine
-
 # Routers
 from .routers import exams, submissions
-
+import pandas as pd
+import numpy as np
+import asyncio
+from loguru import logger
 
 models.Base.metadata.create_all(bind=engine)
 
@@ -37,12 +35,52 @@ app.include_router(submissions.router)
 
 @app.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket):
+    ping_task = None
     await manager.connect(websocket)
     try:
+        # Ping interval in seconds (15 seconds is a good balance)
+        ping_interval = 15
+        
+        # Create a task for handling pings
+        ping_task = asyncio.create_task(send_periodic_pings(websocket, ping_interval))
+        
         while True:
-            await websocket.receive_text()
-    except Exception:
+            # Set a timeout for receiving messages
+            await asyncio.wait_for(websocket.receive_text(), timeout=60)
+            # If needed, process received messages here
+    except asyncio.TimeoutError:
+        # Connection might be stale, log it
+        logger.warning("WebSocket receive timeout - client didn't send data for 60 seconds")
+    except Exception as e:
+        logger.error(f"WebSocket error: {str(e)}")
+    finally:
+        # Cancel the ping task if it exists
+        if ping_task and not ping_task.done():
+            ping_task.cancel()
+            try:
+                await ping_task
+            except asyncio.CancelledError:
+                pass
+        
+        # Clean up the connection
         manager.disconnect(websocket)
+        logger.info("WebSocket connection closed")
+
+async def send_periodic_pings(websocket: WebSocket, interval: int):
+    """Send periodic pings to keep the WebSocket connection alive."""
+    try:
+        while True:
+            await asyncio.sleep(interval)
+            try:
+                await websocket.send_json({"type": "ping", "timestamp": str(pd.Timestamp.now())})
+                logger.info("Ping sent to client")
+            except Exception as e:
+                logger.error(f"Error sending ping: {str(e)}")
+                break
+    except asyncio.CancelledError:
+        logger.info("Ping task cancelled")
+    except Exception as e:
+        logger.error(f"Ping task error: {str(e)}")
 
 
 @app.get("/")
