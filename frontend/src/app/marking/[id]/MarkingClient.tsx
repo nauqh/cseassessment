@@ -581,6 +581,7 @@ function AnswerCard({
 
 			case "python":
 			case "sql":
+			case "pandas":
 				// Handle array case for code output
 				const codeContent = Array.isArray(answer.answer)
 					? answer.answer.join("\n")
