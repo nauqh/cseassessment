@@ -35,52 +35,19 @@ app.include_router(submissions.router)
 
 @app.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket):
-    ping_task = None
     await manager.connect(websocket)
     try:
-        # Ping interval in seconds (15 seconds is a good balance)
-        ping_interval = 15
-        
-        # Create a task for handling pings
-        ping_task = asyncio.create_task(send_periodic_pings(websocket, ping_interval))
-        
         while True:
-            # Set a timeout for receiving messages
-            await asyncio.wait_for(websocket.receive_text(), timeout=60)
-            # If needed, process received messages here
-    except asyncio.TimeoutError:
-        # Connection might be stale, log it
-        logger.warning("WebSocket receive timeout - client didn't send data for 60 seconds")
-    except Exception as e:
-        logger.error(f"WebSocket error: {str(e)}")
-    finally:
-        # Cancel the ping task if it exists
-        if ping_task and not ping_task.done():
-            ping_task.cancel()
             try:
-                await ping_task
-            except asyncio.CancelledError:
-                pass
-        
-        # Clean up the connection
+                # Send a ping message every 30 seconds
+                await websocket.send_text("ping")
+                await asyncio.sleep(30)
+            except Exception as e:
+                logger.error(f"Connection error: {e}")
+                break
+    finally:
         manager.disconnect(websocket)
         logger.info("WebSocket connection closed")
-
-async def send_periodic_pings(websocket: WebSocket, interval: int):
-    """Send periodic pings to keep the WebSocket connection alive."""
-    try:
-        while True:
-            await asyncio.sleep(interval)
-            try:
-                await websocket.send_json({"type": "ping", "timestamp": str(pd.Timestamp.now())})
-                logger.info("Ping sent to client")
-            except Exception as e:
-                logger.error(f"Error sending ping: {str(e)}")
-                break
-    except asyncio.CancelledError:
-        logger.info("Ping task cancelled")
-    except Exception as e:
-        logger.error(f"Ping task error: {str(e)}")
 
 
 @app.get("/")
