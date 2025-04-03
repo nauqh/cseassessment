@@ -14,29 +14,6 @@ from loguru import logger
 router = APIRouter(prefix="/submissions", tags=["Submissions"])
 
 
-async def notify_discord_bot(submission_data):
-    """Notify Discord bot through WebSocket about new submission."""
-    submission_response = (
-        f"LEARNER SUBMISSION - {submission_data.email}\n" +
-        '\n'.join(f"{i+1}: {ans}" for i,
-                  ans in enumerate([question['answer'] for question in submission_data.answers]))
-    )
-
-    notification = {
-        "type": "submission",
-        "content": {
-            "submission_id": str(submission_data.id),
-            "exam_name": submission_data.exam_name,
-            "email": submission_data.email,
-            "answers": submission_data.answers,
-            "summary": submission_data.summary,
-            "submission": submission_response
-        }
-    }
-    # logger.info(notification)
-    await manager.broadcast(notification)
-
-
 def email_exist(email: str, db: Session):
     """Validate email exists in database."""
     email_exists = db.query(models.Submission).filter(
@@ -80,7 +57,15 @@ async def add_submission(data: Submission, db: DbSession):
         db.refresh(submission)
 
         # Notify Discord about the new submission
-        await notify_discord_bot(submission)
+        notification = {
+            "type": "cseassessment",
+            "content": {
+                "submission_id": str(submission.id),
+                "exam_name": submission.exam_name,
+                "email": submission.email,
+            }
+        }
+        await manager.broadcast(notification)
 
         return {
             "summary": summary,
