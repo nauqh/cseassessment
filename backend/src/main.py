@@ -45,9 +45,8 @@ async def websocket_endpoint(websocket: WebSocket):
             except Exception as e:
                 logger.error(f"Connection error: {e}")
                 break
-    finally:
-        manager.disconnect(websocket)
-        logger.info("WebSocket connection closed")
+    except Exception as e:
+        logger.error(f"WebSocket error: {str(e)}")
 
 
 @app.get("/")
