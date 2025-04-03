@@ -10,8 +10,6 @@ from .database import engine
 from .routers import exams, submissions
 import pandas as pd
 import numpy as np
-import asyncio
-from loguru import logger
 
 models.Base.metadata.create_all(bind=engine)
 
@@ -38,15 +36,9 @@ async def websocket_endpoint(websocket: WebSocket):
     await manager.connect(websocket)
     try:
         while True:
-            try:
-                # Send a ping message every 30 seconds
-                await websocket.send_text("ping")
-                await asyncio.sleep(30)
-            except Exception as e:
-                logger.error(f"Connection error: {e}")
-                break
-    except Exception as e:
-        logger.error(f"WebSocket error: {str(e)}")
+            await websocket.receive_text()
+    except Exception:
+        manager.disconnect(websocket)
 
 
 @app.get("/")
