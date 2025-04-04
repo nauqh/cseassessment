@@ -25,21 +25,24 @@ export default function MultiChoiceIntroClient({ examId }: { examId: string }) {
 						<h2 className="text-2xl font-bold">Instructions:</h2>
 						<ul className="list-disc list-inside space-y-2">
 							<li>
-								This section contains 20 multiple choice
-								questions
+								This section contains multiple choice questions
 							</li>
-							<li>Each question has only one correct answer</li>
+							<li>
+								Questions with circle options (⏺️) have{" "}
+								<b>only one</b> correct answer
+							</li>
+							<li>
+								Questions with square options (⏹️) may have{" "}
+								<b>multiple</b> correct answers
+							</li>
 							<li>
 								You can navigate between questions using the
 								questions panel on the right
 							</li>
 							<li>
 								You can review your answers before final
-								submission
-							</li>
-							<li>
-								Once you submit this section, you cannot return
-								to it
+								submission. Once you submit this section, you
+								cannot return to it
 							</li>
 						</ul>
 
