@@ -1,8 +1,8 @@
 from fastapi import HTTPException, APIRouter, status
 from sqlalchemy.orm import Session
 from ..csautograde import Autograder
-from ..websocket import manager
 from uuid import UUID
+import httpx
 
 from ..schemas import SubmissionResponse, Submission
 from ..database import DbSession
@@ -56,16 +56,29 @@ async def add_submission(data: Submission, db: DbSession):
         db.commit()
         db.refresh(submission)
 
-        # Notify Discord about the new submission
-        notification = {
-            "type": "cseassessment",
-            "content": {
-                "submission_id": str(submission.id),
-                "exam_name": submission.exam_name,
-                "email": submission.email,
-            }
+        # Send notification to Discord webhook
+        webhook_url = "https://discord.com/api/webhooks/1357603401239760989/nFH8QB89_SloEgo26rVuRzE01mG_IkD4NVa8VAHb59palPfZiOr1ENewBM_Z6G_vVvds"
+
+        message_content = (
+            f"New submission from **{submission.email}**\n"
+            f"- Exam: {submission.exam_name}\n"
+            f"- Link: https://csassessment.it.com/marking/{str(submission.id)}"
+        )
+
+        discord_payload = {
+            "content": message_content,
+            "flags": 4
         }
-        await manager.broadcast(notification)
+
+        async with httpx.AsyncClient() as client:
+            try:
+                await client.post(webhook_url, json=discord_payload)
+                logger.info(
+                    f"Discord notification sent for submission {submission.id}")
+            except Exception as discord_err:
+                # Log error but don't fail the submission
+                logger.error(
+                    f"Failed to send Discord notification: {discord_err}")
 
         return {
             "summary": summary,
