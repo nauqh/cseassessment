@@ -33,14 +33,16 @@ export default function FinalClient({ examId }: { examId: string }) {
 	};
 
 	const downloadExamSubmission = (examResults: ExamResults) => {
-		// Generate markdown content
-		let markdown = `# ${examResults.exam_name} Exam Submission\n\n`;
-		markdown += `**Email:** ${examResults.email}\n`;
-		markdown += `**Exam ID:** ${examResults.exam_id}\n`;
-		markdown += `**Date:** ${new Date().toLocaleString()}\n\n`;
+		// Generate formatted text content
+		let content = `${examResults.exam_name} EXAM SUBMISSION\n`;
+		content += `${"=".repeat(examResults.exam_name.length + 16)}\n\n`;
+		content += `Email: ${examResults.email}\n`;
+		content += `Exam ID: ${examResults.exam_id}\n`;
+		content += `Date: ${new Date().toLocaleString(undefined, { timeZoneName: 'short' })}\n\n`;
 
 		// Multiple choice answers
-		markdown += `## MULTICHOICE\n\n`;
+		content += `MULTIPLE CHOICE QUESTIONS\n`;
+		content += `${"=".repeat(24)}\n\n`;
 		const multichoiceAnswers = Object.entries(examResults.answers)
 			.filter(
 				([_, answer]: [
@@ -64,20 +66,22 @@ export default function FinalClient({ examId }: { examId: string }) {
 					item: { index: string; answer: string | string[] },
 					index: number
 				) => {
-					markdown += `### Question ${index + 1}\n`;
+					content += `Question ${index + 1}:\n`;
 					if (Array.isArray(item.answer)) {
-						markdown += `Answer: ${item.answer.join(", ")}\n`;
+						content += `Answer: ${item.answer.join(", ")}\n`;
 					} else {
-						markdown += `Answer: ${item.answer}\n`;
+						content += `Answer: ${item.answer}\n`;
 					}
+					content += "\n";
 				}
 			);
 		} else {
-			markdown += `No multiple choice answers submitted.\n\n`;
+			content += `No multiple choice answers submitted.\n\n`;
 		}
 
 		// Programming problems
-		markdown += `\n## PROBLEM\n\n`;
+		content += `PROGRAMMING PROBLEMS\n`;
+		content += `${"=".repeat(20)}\n\n`;
 		const localProblemAnswers: Record<string, ProblemAnswer> = JSON.parse(
 			localStorage.getItem("problemAnswers") || "{}"
 		);
@@ -86,58 +90,59 @@ export default function FinalClient({ examId }: { examId: string }) {
 		if (problemEntries.length > 0) {
 			problemEntries.forEach(
 				([problem, data]: [string, ProblemAnswer]) => {
-					markdown += `### Problem ${problem}\n`;
+					content += `Problem ${problem}:\n`;
+					content += `${"-".repeat(problem.length + 9)}\n`;
 
 					if (data.language === "file") {
-						markdown += `**Submission Type:** File Upload\n`;
+						content += `Type: File Upload\n`;
 						if (data.files && data.files.length > 0) {
-							markdown += `**Uploaded Files:**\n`;
+							content += `Uploaded Files:\n`;
 							data.files.forEach(
 								(file: { name: string; size: number }) => {
-									markdown += `- ${file.name} (${Math.round(
+									content += `- ${file.name} (${Math.round(
 										file.size / 1024
 									)} KB)\n`;
 								}
 							);
-							markdown += `\n`;
+							content += `\n`;
 						} else {
-							markdown += `No files uploaded.\n`;
+							content += `No files uploaded.\n\n`;
 						}
 					} else if (data.language === "link") {
-						markdown += `**Submission Type:** External Link\n`;
+						content += `Type: External Link\n`;
 						if (data.links && data.links.length > 0) {
-							markdown += `**Solution Links:**\n`;
+							content += `Links:\n`;
 							data.links.forEach((link: LinkData) => {
-								markdown += `- [${link.url}](${link.url})`;
+								content += `- ${link.url}`;
 								if (link.description) {
-									markdown += ` - "${link.description}"`;
+									content += ` - "${link.description}"`;
 								}
-								markdown += `\n`;
+								content += `\n`;
 							});
-							markdown += `\n`;
+							content += `\n`;
 						} else {
-							markdown += `No links provided.\n`;
+							content += `No links provided.\n\n`;
 						}
 					} else {
-						markdown += `**Submission Type:** ${data.language} Code\n`;
-						markdown += "```" + data.language + "\n";
-						markdown += `${data.code}\n`;
-						markdown += "```\n";
+						content += `Type: ${data.language.toUpperCase()}\n`;
+						content += `${"*".repeat(40)}\n`;
+						content += `${data.code}\n`;
+						content += `${"*".repeat(40)}\n\n`;
 					}
 				}
 			);
 		} else {
-			markdown += `No programming problems submitted.\n`;
+			content += `No programming problems submitted.\n`;
 		}
 
 		// Create blob and download it
-		const blob = new Blob([markdown], { type: "text/markdown" });
+		const blob = new Blob([content], { type: "text/plain" });
 		const url = URL.createObjectURL(blob);
 		const a = document.createElement("a");
 		a.href = url;
 		a.download = `${examResults.exam_name}_Submission_${new Date()
 			.toISOString()
-			.slice(0, 10)}.md`;
+			.slice(0, 10)}.txt`;
 		document.body.appendChild(a);
 		a.click();
 		document.body.removeChild(a);
