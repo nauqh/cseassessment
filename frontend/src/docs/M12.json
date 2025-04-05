@@ -104,43 +104,537 @@
         },
         {
             "question": "**List all tracks along with their album from The Rolling Stones.**\n\n Order by albumn titles and track names.\n\n<br/>\n\n_Expected output_: There must be 41 rows in the output.\n\n ![](https://i.imgur.com/xFAfJXy.png)",
-            "resultType": "SQL"
+            "resultType": "SQL",
+            "tableData": [
+                {
+                    "TrackName": "19th Nervous Breakdown",
+                    "AlbumTitle": "Hot Rocks, 1964-1971 (Disc 1)"
+                },
+                {
+                    "TrackName": "As Tears Go By",
+                    "AlbumTitle": "Hot Rocks, 1964-1971 (Disc 1)"
+                },
+                {
+                    "TrackName": "Get Off Of My Cloud",
+                    "AlbumTitle": "Hot Rocks, 1964-1971 (Disc 1)"
+                },
+                {
+                    "TrackName": "Heart Of Stone",
+                    "AlbumTitle": "Hot Rocks, 1964-1971 (Disc 1)"
+                },
+                {
+                    "TrackName": "Let's Spend The Night Together",
+                    "AlbumTitle": "Hot Rocks, 1964-1971 (Disc 1)"
+                },
+                {
+                    "TrackName": "Mother's Little Helper",
+                    "AlbumTitle": "Hot Rocks, 1964-1971 (Disc 1)"
+                },
+                {
+                    "TrackName": "Paint It Black",
+                    "AlbumTitle": "Hot Rocks, 1964-1971 (Disc 1)"
+                },
+                {
+                    "TrackName": "Play With Fire",
+                    "AlbumTitle": "Hot Rocks, 1964-1971 (Disc 1)"
+                },
+                {
+                    "TrackName": "Ruby Tuesday",
+                    "AlbumTitle": "Hot Rocks, 1964-1971 (Disc 1)"
+                },
+                {
+                    "TrackName": "Satisfaction",
+                    "AlbumTitle": "Hot Rocks, 1964-1971 (Disc 1)"
+                },
+                {
+                    "TrackName": "Time Is On My Side",
+                    "AlbumTitle": "Hot Rocks, 1964-1971 (Disc 1)"
+                },
+                {
+                    "TrackName": "Under My Thumb",
+                    "AlbumTitle": "Hot Rocks, 1964-1971 (Disc 1)"
+                },
+                {
+                    "TrackName": "Corinna",
+                    "AlbumTitle": "No Security"
+                },
+                {
+                    "TrackName": "Flip The Switch",
+                    "AlbumTitle": "No Security"
+                },
+                {
+                    "TrackName": "Gimmie Shelters",
+                    "AlbumTitle": "No Security"
+                }
+            ]
         },
         {
             "question": "**Retrieve the total number of tracks in each playlist.**\n\n Order by number of tracks in descending order.\n\n<br/>\n\n_Expected output_:\n\n![](https://i.imgur.com/BNNYZrz.png)",
-            "resultType": "SQL"
+            "resultType": "SQL",
+            "tableData": [
+                {
+                    "PlaylistName": "Music",
+                    "TrackCount": 3290
+                },
+                {
+                    "PlaylistName": "Music",
+                    "TrackCount": 3290
+                },
+                {
+                    "PlaylistName": "90’s Music",
+                    "TrackCount": 1477
+                },
+                {
+                    "PlaylistName": "TV Shows",
+                    "TrackCount": 213
+                },
+                {
+                    "PlaylistName": "TV Shows",
+                    "TrackCount": 213
+                },
+                {
+                    "PlaylistName": "Classical",
+                    "TrackCount": 75
+                },
+                {
+                    "PlaylistName": "Brazilian Music",
+                    "TrackCount": 39
+                },
+                {
+                    "PlaylistName": "Heavy Metal Classic",
+                    "TrackCount": 26
+                },
+                {
+                    "PlaylistName": "Classical 101 - Deep Cuts",
+                    "TrackCount": 25
+                },
+                {
+                    "PlaylistName": "Classical 101 - Next Steps",
+                    "TrackCount": 25
+                },
+                {
+                    "PlaylistName": "Classical 101 - The Basics",
+                    "TrackCount": 25
+                },
+                {
+                    "PlaylistName": "Grunge",
+                    "TrackCount": 15
+                },
+                {
+                    "PlaylistName": "Music Videos",
+                    "TrackCount": 1
+                },
+                {
+                    "PlaylistName": "On-The-Go 1",
+                    "TrackCount": 1
+                }
+            ]
         },
         {
             "question": "**Find the total revenue generated by each album.**\n\n Order by total revenue in descending order.\n\n<br/>\n\n_Expected output_:\n\n![](https://i.imgur.com/kWXuavI.png)",
-            "resultType": "SQL"
+            "resultType": "SQL",
+            "tableData": [
+                {
+                    "AlbumTitle": "Battlestar Galactica (Classic), Season 1",
+                    "TotalRevenue": 35.82
+                },
+                {
+                    "AlbumTitle": "The Office, Season 3",
+                    "TotalRevenue": 31.84
+                },
+                {
+                    "AlbumTitle": "Minha Historia",
+                    "TotalRevenue": 26.73
+                },
+                {
+                    "AlbumTitle": "Heroes, Season 1",
+                    "TotalRevenue": 25.87
+                },
+                {
+                    "AlbumTitle": "Lost, Season 2",
+                    "TotalRevenue": 25.87
+                },
+                {
+                    "AlbumTitle": "J.S. Bach: Chaconne, Suite in E Minor, Partita...",
+                    "TotalRevenue": 0.99
+                },
+                {
+                    "AlbumTitle": "Szymanowski: Piano Works, Vol. 1",
+                    "TotalRevenue": 0.99
+                },
+                {
+                    "AlbumTitle": "Nielsen: The Six Symphonies",
+                    "TotalRevenue": 0.99
+                },
+                {
+                    "AlbumTitle": "Liszt - 12 Études D'Execution Transcendante",
+                    "TotalRevenue": 0.99
+                },
+                {
+                    "AlbumTitle": "Respighi:Pines of Rome",
+                    "TotalRevenue": 0.99
+                }
+            ]
         },
         {
             "question": "**Find the number of invoices generated each year.**\n\n Order the result by year.\n\n<br/>\n\n_Expected output_:\n\n![](https://i.imgur.com/YDZnIYh.png)",
-            "resultType": "SQL"
+            "resultType": "SQL",
+            "tableData": [
+                {
+                    "InvoiceYear": 2009,
+                    "InvoiceCount": 83
+                },
+                {
+                    "InvoiceYear": 2010,
+                    "InvoiceCount": 83
+                },
+                {
+                    "InvoiceYear": 2011,
+                    "InvoiceCount": 83
+                },
+                {
+                    "InvoiceYear": 2012,
+                    "InvoiceCount": 83
+                },
+                {
+                    "InvoiceYear": 2013,
+                    "InvoiceCount": 80
+                }
+            ]
         },
         {
             "question": "**Find customers that spend over $40 at Chinook store.**\n\n Display their full name and order by the total sales in descending order.\n\n<br/>\n\n_Expected output_:\n\n![](https://i.imgur.com/4E8bNWK.png)",
-            "resultType": "SQL"
+            "resultType": "SQL",
+            "tableData": [
+                {
+                    "CustomerName": "Helena Holý",
+                    "TotalSales": 49.62
+                },
+                {
+                    "CustomerName": "Richard Cunningham",
+                    "TotalSales": 47.62
+                },
+                {
+                    "CustomerName": "Luis Rojas",
+                    "TotalSales": 46.62
+                },
+                {
+                    "CustomerName": "Ladislav Kovács",
+                    "TotalSales": 45.62
+                },
+                {
+                    "CustomerName": "Hugh O'Reilly",
+                    "TotalSales": 45.62
+                },
+                {
+                    "CustomerName": "Julia Barnett",
+                    "TotalSales": 43.62
+                },
+                {
+                    "CustomerName": "Frank Ralston",
+                    "TotalSales": 43.62
+                },
+                {
+                    "CustomerName": "Fynn Zimmermann",
+                    "TotalSales": 43.62
+                },
+                {
+                    "CustomerName": "Astrid Gruber",
+                    "TotalSales": 42.62
+                },
+                {
+                    "CustomerName": "Victor Stevens",
+                    "TotalSales": 42.62
+                },
+                {
+                    "CustomerName": "Terhi Hämäläinen",
+                    "TotalSales": 41.62
+                },
+                {
+                    "CustomerName": "František Wichterlová",
+                    "TotalSales": 40.62
+                },
+                {
+                    "CustomerName": "Isabelle Mercier",
+                    "TotalSales": 40.62
+                },
+                {
+                    "CustomerName": "Johannes Van der Berg",
+                    "TotalSales": 40.62
+                }
+            ]
         },
         {
             "question": "**Find the managers and the number of employees they manage in the store.**\n\n Display their fullname and order alphabetically.\n\n<br/>\n\n_Expected output_:\n\n![](https://i.imgur.com/5ZO7b7k.png)",
-            "resultType": "SQL"
+            "resultType": "SQL",
+            "tableData": [
+                {
+                    "EmployeeName": "Andrew Adams",
+                    "ManagedEmployees": 2
+                },
+                {
+                    "EmployeeName": "Michael Mitchell",
+                    "ManagedEmployees": 2
+                },
+                {
+                    "EmployeeName": "Nancy Edwards",
+                    "ManagedEmployees": 3
+                }
+            ]
         },
         {
             "question": "**Calculate the cumulative sales for each customer.** E.g. If a customer has three invoices with totals of 50, 30, and 20, the cumulative sales after the 3rd invoice would be: 50 + 30 + 20 = 100\n\n Display their fullname and order by customer id and invoice date.\n\n<br/>\n\n_Expected output_:\n\n![](https://i.imgur.com/stM7l95.png)",
-            "resultType": "SQL"
+            "resultType": "SQL",
+            "tableData": [
+                {
+                    "CustomerName": "Luís Gonçalves",
+                    "InvoiceId": 98,
+                    "InvoiceDate": "2010-03-11 00:00:00",
+                    "CumulativeSales": 3.98
+                },
+                {
+                    "CustomerName": "Luís Gonçalves",
+                    "InvoiceId": 121,
+                    "InvoiceDate": "2010-06-13 00:00:00",
+                    "CumulativeSales": 7.94
+                },
+                {
+                    "CustomerName": "Luís Gonçalves",
+                    "InvoiceId": 143,
+                    "InvoiceDate": "2010-09-15 00:00:00",
+                    "CumulativeSales": 13.88
+                },
+                {
+                    "CustomerName": "Luís Gonçalves",
+                    "InvoiceId": 195,
+                    "InvoiceDate": "2011-05-06 00:00:00",
+                    "CumulativeSales": 14.87
+                },
+                {
+                    "CustomerName": "Luís Gonçalves",
+                    "InvoiceId": 316,
+                    "InvoiceDate": "2012-10-27 00:00:00",
+                    "CumulativeSales": 16.85
+                },
+                {
+                    "CustomerName": "Puja Srivastava",
+                    "InvoiceId": 45,
+                    "InvoiceDate": "2009-07-08 00:00:00",
+                    "CumulativeSales": 9.90
+                },
+                {
+                    "CustomerName": "Puja Srivastava",
+                    "InvoiceId": 97,
+                    "InvoiceDate": "2010-02-26 00:00:00",
+                    "CumulativeSales": 11.89
+                },
+                {
+                    "CustomerName": "Puja Srivastava",
+                    "InvoiceId": 218,
+                    "InvoiceDate": "2011-08-20 00:00:00",
+                    "CumulativeSales": 13.87
+                },
+                {
+                    "CustomerName": "Puja Srivastava",
+                    "InvoiceId": 229,
+                    "InvoiceDate": "2011-09-30 00:00:00",
+                    "CumulativeSales": 27.73
+                },
+                {
+                    "CustomerName": "Puja Srivastava",
+                    "InvoiceId": 284,
+                    "InvoiceDate": "2012-05-30 00:00:00",
+                    "CumulativeSales": 36.64
+                }
+            ]
         },
         {
             "question": "**Rank the albums by their total sales revenue.**\n\n Display the album's id, title and order by their ranking.\n\n<br/>\n\n_Expected output_:\n\n ![](https://i.imgur.com/FZcMa9T.png)",
-            "resultType": "SQL"
+            "resultType": "SQL",
+            "tableData": [
+                {
+                    "CustomerName": "Luís Gonçalves",
+                    "InvoiceId": 98,
+                    "InvoiceDate": "2010-03-11 00:00:00",
+                    "CumulativeSales": 3.98
+                },
+                {
+                    "CustomerName": "Luís Gonçalves",
+                    "InvoiceId": 121,
+                    "InvoiceDate": "2010-06-13 00:00:00",
+                    "CumulativeSales": 7.94
+                },
+                {
+                    "CustomerName": "Luís Gonçalves",
+                    "InvoiceId": 143,
+                    "InvoiceDate": "2010-09-15 00:00:00",
+                    "CumulativeSales": 13.88
+                },
+                {
+                    "CustomerName": "Luís Gonçalves",
+                    "InvoiceId": 195,
+                    "InvoiceDate": "2011-05-06 00:00:00",
+                    "CumulativeSales": 14.87
+                },
+                {
+                    "CustomerName": "Luís Gonçalves",
+                    "InvoiceId": 316,
+                    "InvoiceDate": "2012-10-27 00:00:00",
+                    "CumulativeSales": 16.85
+                },
+                {
+                    "CustomerName": "Puja Srivastava",
+                    "InvoiceId": 45,
+                    "InvoiceDate": "2009-07-08 00:00:00",
+                    "CumulativeSales": 9.90
+                },
+                {
+                    "CustomerName": "Puja Srivastava",
+                    "InvoiceId": 97,
+                    "InvoiceDate": "2010-02-26 00:00:00",
+                    "CumulativeSales": 11.89
+                },
+                {
+                    "CustomerName": "Puja Srivastava",
+                    "InvoiceId": 218,
+                    "InvoiceDate": "2011-08-20 00:00:00",
+                    "CumulativeSales": 13.87
+                },
+                {
+                    "CustomerName": "Puja Srivastava",
+                    "InvoiceId": 229,
+                    "InvoiceDate": "2011-09-30 00:00:00",
+                    "CumulativeSales": 27.73
+                },
+                {
+                    "CustomerName": "Puja Srivastava",
+                    "InvoiceId": 284,
+                    "InvoiceDate": "2012-05-30 00:00:00",
+                    "CumulativeSales": 36.64
+                }
+            ]
         },
         {
             "question": "**Find the total amount that each customer spent each month.**\n\n Display their full name and order by customer name and month\n\n<br/>\n\n_Expected output_:\n\n ![](https://i.imgur.com/ivuvPEc.png)",
-            "resultType": "SQL"
+            "resultType": "SQL",
+            "tableData": [
+                {
+                    "CustomerName": "Luís Gonçalves",
+                    "Month": "03",
+                    "MonthlyTotal": 3.98
+                },
+                {
+                    "CustomerName": "Luís Gonçalves",
+                    "Month": "05",
+                    "MonthlyTotal": 0.99
+                },
+                {
+                    "CustomerName": "Luís Gonçalves",
+                    "Month": "06",
+                    "MonthlyTotal": 3.96
+                },
+                {
+                    "CustomerName": "Luís Gonçalves",
+                    "Month": "08",
+                    "MonthlyTotal": 8.91
+                },
+                {
+                    "CustomerName": "Luís Gonçalves",
+                    "Month": "09",
+                    "MonthlyTotal": 5.94
+                },
+                {
+                    "CustomerName": "Puja Srivastava",
+                    "Month": "04",
+                    "MonthlyTotal": 3.96
+                },
+                {
+                    "CustomerName": "Puja Srivastava",
+                    "Month": "05",
+                    "MonthlyTotal": 8.91
+                },
+                {
+                    "CustomerName": "Puja Srivastava",
+                    "Month": "07",
+                    "MonthlyTotal": 5.94
+                },
+                {
+                    "CustomerName": "Puja Srivastava",
+                    "Month": "08",
+                    "MonthlyTotal": 1.98
+                },
+                {
+                    "CustomerName": "Puja Srivastava",
+                    "Month": "09",
+                    "MonthlyTotal": 13.86
+                }
+            ]
         },
         {
             "question": "**Find the total amount each customer spent each month. Include only customers who spent more than $45.**\n\nDisplay their full name and order the results by customer name and month\n\n<br/>\n\n_Expected output_: There must be total **35 rows** in the output\n\n ![](https://i.imgur.com/afqIXrv.png)",
-            "resultType": "SQL"
+            "resultType": "SQL",
+            "tableData": [
+                {
+                    "CustomerName": "Helena Holý",
+                    "Month": "02",
+                    "MonthlyTotal": 1.98
+                },
+                {
+                    "CustomerName": "Helena Holý",
+                    "Month": "04",
+                    "MonthlyTotal": 0.99
+                },
+                {
+                    "CustomerName": "Helena Holý",
+                    "Month": "05",
+                    "MonthlyTotal": 3.96
+                },
+                {
+                    "CustomerName": "Helena Holý",
+                    "Month": "07",
+                    "MonthlyTotal": 8.91
+                },
+                {
+                    "CustomerName": "Helena Holý",
+                    "Month": "08",
+                    "MonthlyTotal": 5.94
+                },
+                {
+                    "CustomerName": "Helena Holý",
+                    "Month": "10",
+                    "MonthlyTotal": 1.98
+                },
+                {
+                    "CustomerName": "Helena Holý",
+                    "Month": "11",
+                    "MonthlyTotal": 25.86
+                },
+                {
+                    "CustomerName": "Hugh O'Reilly",
+                    "Month": "02",
+                    "MonthlyTotal": 5.94
+                },
+                {
+                    "CustomerName": "Hugh O'Reilly",
+                    "Month": "03",
+                    "MonthlyTotal": 1.98
+                },
+                {
+                    "CustomerName": "Hugh O'Reilly",
+                    "Month": "04",
+                    "MonthlyTotal": 21.86
+                },
+                {
+                    "CustomerName": "Hugh O'Reilly",
+                    "Month": "08",
+                    "MonthlyTotal": 1.98
+                },
+                {
+                    "CustomerName": "Hugh O'Reilly",
+                    "Month": "09",
+                    "MonthlyTotal": 0.99
+                }
+            ]
         }
     ]
 }
