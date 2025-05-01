@@ -77,7 +77,7 @@ class ResourceManager:
     def _get_s3_data(cls, key: str) -> dict:
         logger.info(f"Fetching data from S3: {key}")
         """Fetches data from the specified S3 key"""
-        s3 = boto3.client("s3")
+        s3 = boto3.client("s3", region_name="ap-southeast-1")
         try:
             obj = s3.get_object(Bucket="cseassessment", Key=key)
             data = obj["Body"].read().decode("utf-8")
