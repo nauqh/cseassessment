@@ -60,9 +60,9 @@ async def add_submission(data: Submission, db: DbSession):
         webhook_url = "https://discord.com/api/webhooks/1357603401239760989/nFH8QB89_SloEgo26rVuRzE01mG_IkD4NVa8VAHb59palPfZiOr1ENewBM_Z6G_vVvds"
 
         message_content = (
-            f"New submission from **{submission.email}**\n"
-            f"- Exam: {submission.exam_name}\n"
-            f"- Link: https://csassessment.it.com/marking/{str(submission.id)}"
+            f"### New submission from **`{submission.email}`**\n"
+            f"- **Exam:** `{submission.exam_name}`\n"
+            f"- **View:** [Open marking page](https://csassessment.it.com/marking/{str(submission.id)})"
         )
 
         discord_payload = {
