@@ -190,7 +190,7 @@ export default function MarkingClient({
 \`\`\`
 ${feedbackContent}
 \`\`\`
-Solution: ${shareableUrl}
+${(submission?.score && submission.score >= 80) ? `Solution: ${shareableUrl}` : ''}
 
 ${(submission?.score && submission.score < 80) 
   ? "❗You have FAILED the exam. Please retake the exam in order to unlock new module." 
