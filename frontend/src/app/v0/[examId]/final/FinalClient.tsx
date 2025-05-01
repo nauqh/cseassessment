@@ -38,7 +38,9 @@ export default function FinalClient({ examId }: { examId: string }) {
 		content += `${"=".repeat(examResults.exam_name.length + 16)}\n\n`;
 		content += `Email: ${examResults.email}\n`;
 		content += `Exam ID: ${examResults.exam_id}\n`;
-		content += `Date: ${new Date().toLocaleString(undefined, { timeZoneName: 'short' })}\n\n`;
+		content += `Date: ${new Date().toLocaleString(undefined, {
+			timeZoneName: "short",
+		})}\n\n`;
 
 		// Multiple choice answers
 		content += `MULTIPLE CHOICE QUESTIONS\n`;
@@ -189,6 +191,8 @@ export default function FinalClient({ examId }: { examId: string }) {
 
 		try {
 			console.log(JSON.stringify(examResults));
+			// Download the exam submission before navigating
+			downloadExamSubmission(examResults);
 			const response = await fetch(
 				"https://cseassessment.up.railway.app/submissions",
 				{
@@ -206,9 +210,6 @@ export default function FinalClient({ examId }: { examId: string }) {
 			if (!response.ok) {
 				throw new Error(`HTTP error! status: ${response.status}`);
 			}
-
-			// Download the exam submission before navigating
-			downloadExamSubmission(examResults);
 
 			toast({
 				description: "Your exam has been submitted successfully!",
