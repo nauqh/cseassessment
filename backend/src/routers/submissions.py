@@ -61,7 +61,7 @@ async def add_submission(data: Submission, db: DbSession):
 
         message_content = (
             f"### New submission from **`{submission.email}`**\n"
-            f"- **Exam:** `{submission.exam_name}`\n"
+            f"- **Exam:** {submission.exam_name}\n"
             f"- **View:** [Open marking page](https://csassessment.it.com/marking/{str(submission.id)})"
         )
 
