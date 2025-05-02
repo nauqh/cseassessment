@@ -282,6 +282,11 @@ export default function MultiChoiceClient({
 															{children}
 														</ul>
 													),
+													p: ({ children }) => (
+														<p className="my-2">
+															{children}
+														</p>
+													),
 												}}
 											>
 												{part}
