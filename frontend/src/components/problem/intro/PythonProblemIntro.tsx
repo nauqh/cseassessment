@@ -25,9 +25,7 @@ export default function PythonProblemIntro() {
 						should be submitted for each question.
 					</li>
 					<li>
-						<strong>NOTE 4:</strong> Your function must have return
-						and must return the same values exactly like in the
-						examples for each question.
+						<strong>NOTE 4:</strong> Your function must use a return statement and return the exact same values as shown in the examples.
 					</li>
 					<li>
 						<strong>NOTE 5:</strong>Functions that have only print

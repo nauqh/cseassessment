@@ -39,11 +39,6 @@ export default function MultiChoiceIntroClient({ examId }: { examId: string }) {
 								You can navigate between questions using the
 								questions panel on the right
 							</li>
-							<li>
-								You can review your answers before final
-								submission. Once you submit this section, you
-								cannot return to it
-							</li>
 						</ul>
 
 						<div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 mt-6">
