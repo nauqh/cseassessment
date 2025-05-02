@@ -23,8 +23,8 @@ config:
 4:
     type: MULTICHOICE
     answer:
-        - "A"
-        - "B"
+        - "a"
+        - "b"
 5:
     type: MULTICHOICE
     answer:
