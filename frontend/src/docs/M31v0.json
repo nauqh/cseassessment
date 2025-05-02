@@ -10,7 +10,7 @@
                 "D"
             ],
             "resultType": "MULTICHOICE_SINGLE",
-            "question": "What will be the output of the following code?\n\n```\nimport pandas as pd\ns = pd.Series([10, 20, 30], index=['a', 'b', 'c'])\nprint(s['b'])\n```\n\nA. 10\n\nB. 20\n\nC. b\n\nD. Error"
+            "question": "What is the shape of the dataframe?\n\nA. 2 Dimensions\n\nB. (148654,)\n\nC. (10, 148654)\n\nD. (148654, 10)"
         },
         {
             "choices": [
@@ -20,7 +20,7 @@
                 "D"
             ],
             "resultType": "MULTICHOICE_SINGLE",
-            "question": "Given a DataFrame `df` with 4 rows and 3 columns, what will `df.shape[1]` return?\n\nA. 4\n\nB. 3\n\nC. [4, 3]\n\nD. Error"
+            "question": "Assume that every employee has a different name, how many employees are there in the dataset?\n\nA. 110811\n\nB. 148654\n\nC. 110810\n\nD. 148652"
         },
         {
             "choices": [
@@ -30,17 +30,7 @@
                 "D"
             ],
             "resultType": "MULTICHOICE_SINGLE",
-            "question": "What will be the output of the following code?\n\n```\ndf = pd.DataFrame({\n    'Name': ['Alice', 'Bob', 'Charlie'],\n    'Score': [85, 92, 78]\n})\nprint(df[df['Score'] > 80]['Name'])\n```\n\nA. Alice, Bob\n\nB. 85, 92\n\nC. ['Alice', 'Bob']\n\nD. 0 Alice\\n1 Bob"
-        },
-        {
-            "choices": [
-                "A",
-                "B",
-                "C",
-                "D"
-            ],
-            "resultType": "MULTICHOICE_MANY",
-            "question": "Which of the following methods can be used to handle or fill missing values in a Pandas DataFrame?\n\nA. `df.fillna(value)`\n\nB. `df.dropna()`\n\nC. `df.replace(missing=True)`\n\nD. `df.isnull()`"
+            "question": "What is the average Base Pay of the whole dataset? \n\nA. 66325.45\n\nB. 65007.45\n\nC. 5066.05\n\nD. 74768.32"
         },
         {
             "choices": [
@@ -50,7 +40,7 @@
                 "D"
             ],
             "resultType": "MULTICHOICE_SINGLE",
-            "question": "Which of the following will sort the DataFrame `df` by column `'Age'` in descending order?\n\nA. `df.sort_values('Age', ascending=True)`\n\nB. `df.sort('Age', descending=True)`\n\nC. `df.sort_values('Age', ascending=False)`\n\nD. `df.order_by('Age')`"
+            "question": "Which of the observations is FALSE about the San Francisco employees?\n\nA. The size of the city government slightly grew from 2011 to 2014 (in term of number of employees)\n\nB. However, average of total pay increased steadily throughout the years thanks to better payment policy. \n\nC. The average amount of overtime pay also increased.\n\nD. Maximum amount of Base Pay reached about 319.000 USD in 2014."
         },
         {
             "choices": [
@@ -60,7 +50,7 @@
                 "D"
             ],
             "resultType": "MULTICHOICE_SINGLE",
-            "question": "Which Pandas function is used to combine two DataFrames **horizontally** based on a common column?\n\nA. `pd.concat()`\n\nB. `pd.append()`\n\nC. `pd.merge()`\n\nD. `pd.combine()`"
+            "question": "What is the name of the highest paid person (including benefits)?\n\nA. WILLIAM J. COAKER JR.\n\nB. NATHANIEL FORD\n\nC. JOE LOPEZ\n\nD. GREGORY P SUHR"
         },
         {
             "choices": [
@@ -70,7 +60,7 @@
                 "D"
             ],
             "resultType": "MULTICHOICE_SINGLE",
-            "question": "What will this code return?\n\n```\ndf = pd.DataFrame({'A': [10, 20, 30]}, index=['x', 'y', 'z'])\nprint(df.loc['y'])\n```\n\nA. 10\n\nB. A    20\n\nC. Error\n\nD. y"
+            "question": "What is his job title?\n\nA. General Manager-Metropolitan Transit Authority\n\nB. Special Nurse\n\nC. Chief of Police\n\nD. Chief Investment Officer"
         },
         {
             "choices": [
@@ -80,7 +70,7 @@
                 "D"
             ],
             "resultType": "MULTICHOICE_SINGLE",
-            "question": "What does the following code do?\n\n```\ndf['Total'] = df['Math'] + df['Science']\n```\n\nA. Adds a new row to the DataFrame\n\nB. Concatenates the 'Math' and 'Science' columns\n\nC. Adds a new column that is the sum of 'Math' and 'Science'\n\nD. Deletes the 'Math' column"
+            "question": "What is the name of the lowest paid person (including benefits)?\n\nA. WILLIAM J. COAKER JR.\n\nB. NATHANIEL FORD\n\nC. JOE LOPEZ\n\nD. LILLER JACKSON"
         },
         {
             "choices": [
@@ -90,7 +80,7 @@
                 "D"
             ],
             "resultType": "MULTICHOICE_SINGLE",
-            "question": "What does `df.reset_index(drop=True)` do?\n\nA. Deletes the current index and replaces it with a default one\n\nB. Sorts the index\n\nC. Sets a new index from a column\n\nD. Drops the first row"
+            "question": "How much did the person in Question 7 get paid (TotalPay) in 2014? \n\nA. -618.13\n\nB. 618.13\n\nC. -257.56\n\nD. 257.56"
         },
         {
             "choices": [
@@ -100,7 +90,17 @@
                 "D"
             ],
             "resultType": "MULTICHOICE_SINGLE",
-            "question": "What will the following code output?\n\n```\ndf = pd.DataFrame({'A': [1, 2, 2, 3], 'B': [5, 6, 7, 8]})\nprint(df.groupby('A').sum())\n```\n\nA. Grouping A and summing B values per group\n\nB. Summing all columns\n\nC. Raises an error\n\nD. Only sums column A"
+            "question": "How many unique employees have the same Job Title with `Liller Jackson` in the dataset? \n\nA. 72\n\nB. 73\n\nC. 74\n\nD. 75"
+        },
+        {
+            "choices": [
+                "A",
+                "B",
+                "C",
+                "D"
+            ],
+            "resultType": "MULTICHOICE_SINGLE",
+            "question": "How many percentage of Special Nurse get paid overtime? \n\nA. About 76%\n\nB. About 56%\n\nC. About 26%\n\nD. About 6%"
         },
         {
             "resultType": "EXPRESSION",

@@ -8,31 +8,30 @@ config:
                 - type: title_case
                   columns: ["JobTitle"]
 
-1:
-    type: MULTICHOICE
-    answer:
-        - "B"
-2:
-    type: MULTICHOICE
-    answer:
-        - "B"
-3:
+1:B B D A,B  A C C B C A
     type: MULTICHOICE
     answer:
         - "D"
-4:
+2:
     type: MULTICHOICE
     answer:
         - "A"
+3:
+    type: MULTICHOICE
+    answer:
+        - "A"
+4:
+    type: MULTICHOICE
+    answer:
         - "B"
 5:
     type: MULTICHOICE
     answer:
-        - "A"
+        - "B"
 6:
     type: MULTICHOICE
     answer:
-        - "C"
+        - "A"
 7:
     type: MULTICHOICE
     answer:
@@ -40,15 +39,15 @@ config:
 8:
     type: MULTICHOICE
     answer:
-        - "B"
+        - "A"
 9:
     type: MULTICHOICE
     answer:
-        - "C"
+        - "D"
 10:
     type: MULTICHOICE
     answer:
-        - "A"
+        - "C"
 11:
     type: EXPRESSION
     answer: |
