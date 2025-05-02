@@ -946,7 +946,7 @@ export default function ProblemClient({
 										className="h-full 2xl:text-xl"
 										extensions={[
 											customKeymap(),
-											EditorView.lineWrapping,
+											// EditorView.lineWrapping,  
 										]}
 									/>
 								)}
