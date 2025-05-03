@@ -16,7 +16,7 @@ def upload_directory_to_s3(directory_path, bucket_name, s3_prefix=""):
     - s3_prefix: str - Optional prefix (folder path) in the S3 bucket
     """
     s3_client = boto3.client('s3')
-
+    print(directory_path)
     for root, _, files in os.walk(directory_path):
         for file in files:
             local_path = os.path.join(root, file)
