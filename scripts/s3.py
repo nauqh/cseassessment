@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+
 def upload_directory_to_s3(directory_path, bucket_name, s3_prefix=""):
     """
     Uploads all files from a local directory to an AWS S3 bucket.
@@ -44,10 +45,10 @@ def read_s3_file(bucket_name, s3_key):
 
 
 if __name__ == "__main__":
+    print("Sometifoenfe..")
     upload_directory_to_s3("../frontend/src/docs", "cseassessment", "exams")
     # bucket = 'cseassessment'
     # key = 'exams/M11.json'
 
     # file_content = read_s3_file(bucket, key)
     # print(json.loads(file_content))
-
