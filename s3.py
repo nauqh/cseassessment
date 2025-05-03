@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-def upload_directory_to_s3(directory_path, bucket_name, s3_prefix=""):
+def upload_directory_to_s3(directory: str, bucket: str, s3_prefix=""):
     """
     Uploads all files from a local directory to an AWS S3 bucket.
 
@@ -16,17 +16,17 @@ def upload_directory_to_s3(directory_path, bucket_name, s3_prefix=""):
     - s3_prefix: str - Optional prefix (folder path) in the S3 bucket
     """
     s3_client = boto3.client('s3')
-    for root, _, files in os.walk(directory_path):
+    for root, _, files in os.walk(directory):
         for file in files:
             local_path = os.path.join(root, file)
-            relative_path = os.path.relpath(local_path, directory_path)
+            relative_path = os.path.relpath(local_path, directory)
             s3_key = os.path.join(s3_prefix, relative_path).replace("\\", "/")
 
-            print(f"Uploading {local_path} to s3://{bucket_name}/{s3_key}")
-            s3_client.upload_file(local_path, bucket_name, s3_key)
+            print(f"Uploading {local_path} to s3://{bucket}/{s3_key}")
+            s3_client.upload_file(local_path, bucket, s3_key)
 
 
-def read_s3_file(bucket_name, s3_key):
+def read_s3_file(bucket: str, s3_key):
     """
     Reads a text file from an S3 bucket and returns its content as a string.
 
@@ -38,7 +38,7 @@ def read_s3_file(bucket_name, s3_key):
     - str - Contents of the file
     """
     s3 = boto3.client('s3')
-    response = s3.get_object(Bucket=bucket_name, Key=s3_key)
+    response = s3.get_object(Bucket=bucket, Key=s3_key)
     content = response['Body'].read().decode('utf-8')
     return content
 
