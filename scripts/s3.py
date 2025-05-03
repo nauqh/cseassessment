@@ -19,6 +19,7 @@ def upload_directory_to_s3(directory_path, bucket_name, s3_prefix=""):
     print(directory_path)
     for root, _, files in os.walk(directory_path):
         for file in files:
+            print(file)
             local_path = os.path.join(root, file)
             relative_path = os.path.relpath(local_path, directory_path)
             s3_key = os.path.join(s3_prefix, relative_path).replace("\\", "/")
