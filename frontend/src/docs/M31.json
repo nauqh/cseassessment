@@ -30,7 +30,7 @@
                 "D"
             ],
             "resultType": "MULTICHOICE_SINGLE",
-            "question": "What will be the output of the following code?\n\n```\ndf = pd.DataFrame({\n    'Name': ['Alice', 'Bob', 'Charlie'],\n    'Score': [85, 92, 78]\n})\nprint(df[df['Score'] > 80]['Name'])\n```\n\nA. Alice, Bob\n\nB. 85, 92\n\nC. ['Alice', 'Bob']\n\nD. 0 Alice\\n1 Bob"
+            "question": "What will be the output of the following code?\n\n```\ndf = pd.DataFrame({\n    'Name': ['Alice', 'Bob', 'Charlie'],\n    'Score': [85, 92, 78]\n})\nprint(df[df['Score'] > 80]['Name'])\n```\n\nA. Alice, Bob\n\nB. 85, 92\n\nC. ['Alice', 'Bob']\n\nD. \n\n 0 Alice\n\n 1 Bob"
         },
         {
             "choices": [
