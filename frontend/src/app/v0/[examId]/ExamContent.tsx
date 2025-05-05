@@ -85,9 +85,11 @@ export default function ExamContent({
 							logged as soon as you submit your email.
 						</p>
 						<p>
-							The passing grade for this exam is 80%. Your
-							submission will be graded and return within 1
-							working day .
+							The passing grade for this exam is 80%. 
+						</p>
+						<p>
+							Your submission will be graded and return within 1
+							working day.
 						</p>
 					</div>
 
