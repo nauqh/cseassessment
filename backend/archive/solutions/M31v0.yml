@@ -8,7 +8,7 @@ config:
                 - type: title_case
                   columns: ["JobTitle"]
 
-1:B B D A,B  A C C B C A
+1:
     type: MULTICHOICE
     answer:
         - "D"
