@@ -13,7 +13,7 @@ const ProblemDescription = ({
 	tableData,
 	erdImageUrl,
 	erdName,
-	notebookUrl
+	notebookUrl,
 }: {
 	name: string;
 	content?: string;
@@ -71,16 +71,18 @@ const ProblemDescription = ({
 								Pandas Notebook
 							</h3>
 							<p>
-								Use this Google Colab notebook to test your Pandas queries. 
-								Once you've completed your solution, copy your code back to the submission box.
+								Use this Google Colab notebook to test your
+								pandas queries. Once you've completed your
+								solution, copy your code back to the submission
+								box.
 							</p>
 						</div>
 						<div className="mt-4">
 							{notebookUrl ? (
 								<div className="flex flex-col items-start space-y-3">
-									<Link 
-										href={notebookUrl} 
-										target="_blank" 
+									<Link
+										href={notebookUrl}
+										target="_blank"
 										rel="noopener noreferrer"
 										className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
 									>
@@ -88,11 +90,22 @@ const ProblemDescription = ({
 										Open Google Colab Notebook
 									</Link>
 									<div className="text-sm text-gray-600 mt-2">
-										<p>The notebook will open in a new tab. You can use it to:</p>
+										<p>
+											The notebook will open in a new tab.
+											You can use it to:
+										</p>
 										<ul className="list-disc pl-5 mt-1 space-y-1">
-											<li>Test your pandas queries interactively</li>
-											<li>Visualize your data and results</li>
-											<li>Experiment with different approaches</li>
+											<li>
+												Test your pandas queries
+												interactively
+											</li>
+											<li>
+												Visualize your data and results
+											</li>
+											<li>
+												Experiment with different
+												approaches
+											</li>
 										</ul>
 									</div>
 								</div>
