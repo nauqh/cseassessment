@@ -4,6 +4,36 @@ import Link from "next/link";
 export default function PandasProblemIntro() {
 	return (
 		<div className="bg-muted p-6 rounded-lg space-y-4">
+			<div className="bg-green-50 border border-green-200 p-4 rounded-md mt-4">
+				<div className="text-xs font-semibold text-green-700 mb-1">
+					IMPORTANT
+				</div>
+				<div className="space-y-2">
+					<p>
+						We will provide you with a Google Colab notebook for you
+						to run and test your pandas query.
+					</p>
+					<p>
+						You should not run your query in the code editor here.
+					</p>
+					<p>
+						After running your code in the provided Colab notebook,
+						simply copy and paste your answer in the submission box.
+					</p>
+					<p>
+						The Colab notebook link will be provided in the Notebook
+						tab when you are working on the problems:
+					</p>
+					<a
+						href="https://colab.research.google.com/drive/1hCx_Udtmdl4v5WmNsFyomG0JvPeaSZw0#scrollTo=081jUhieHuXy"
+						target="_blank"
+						rel="noopener noreferrer"
+						className="underline font-medium"
+					>
+						Link to Google Colab Notebook
+					</a>
+				</div>
+			</div>
 			<p>
 				This section asks you to submit a <b>single expression</b> to
 				answer the question.
@@ -34,34 +64,6 @@ export default function PandasProblemIntro() {
 						defining functions. A statement may contain expressions
 						but does not return a value.
 					</p>
-				</div>
-			</div>
-
-			<div className="bg-green-50 border border-green-200 p-4 rounded-md mt-4">
-				<div className="text-xs font-semibold text-green-700 mb-1">
-					IMPORTANT
-				</div>
-				<div className="space-y-2">
-					<p>
-						We will provide you with a Google Colab notebook for you to run and test your pandas query.
-					</p>
-					<p>
-						You should not run your query in the code editor here.
-					</p>
-					<p>
-						After running your code in the provided Colab notebook, simply copy and paste your answer in the submission box.
-					</p>
-					<p>
-						The Colab notebook link will be provided in the Notebook tab when you are working on the problems:
-					</p>
-					<a 
-						href="https://colab.research.google.com/drive/1hCx_Udtmdl4v5WmNsFyomG0JvPeaSZw0#scrollTo=081jUhieHuXy" 
-						target="_blank"
-						rel="noopener noreferrer"
-						className="underline font-medium"
-					>
-						Google Colab Notebook
-					</a>
 				</div>
 			</div>
 
