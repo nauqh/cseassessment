@@ -10,29 +10,25 @@ export default function PandasProblemIntro() {
 				</div>
 				<div className="space-y-2">
 					<p>
-						We will provide you with a Google Colab notebook for you
-						to run and test your pandas query.
+						We will provide you with a Google Colab notebook to{" "}
+						<b>run and test</b> your pandas query.
 					</p>
 					<p>
-						You should not run your query in the code editor here.
+						After running your code in the provided notebook, simply
+						copy and paste your answer in the submission box.
 					</p>
 					<p>
-						After running your code in the provided Colab notebook,
-						simply copy and paste your answer in the submission box.
+						The Colab notebook link will be visible in the Notebook
+						tab when you are working on the problems.
 					</p>
-					<p>
-						The Colab notebook link will be provided in the Notebook
-						tab when you are working on the problems:
-					</p>
-					<a
-						href="https://colab.research.google.com/drive/1hCx_Udtmdl4v5WmNsFyomG0JvPeaSZw0#scrollTo=081jUhieHuXy"
-						target="_blank"
-						rel="noopener noreferrer"
-						className="underline font-medium"
-					>
-						Link to Google Colab Notebook
-					</a>
 				</div>
+				<Link
+					href="https://colab.research.google.com/drive/1hCx_Udtmdl4v5WmNsFyomG0JvPeaSZw0#scrollTo=081jUhieHuXy"
+					className="text-blue-600 hover:text-blue-800 underline"
+					target="_blank"
+				>
+					Link to Google Colab Notebook
+				</Link>
 			</div>
 			<p>
 				This section asks you to submit a <b>single expression</b> to

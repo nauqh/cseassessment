@@ -12,6 +12,7 @@ import {
 	BiLinkAlt,
 	BiPlus,
 	BiEdit,
+	BiCodeBlock,
 } from "react-icons/bi";
 import {
 	ResizableHandle,
@@ -113,11 +114,19 @@ export default function ProblemClient({
 			setUploadedFiles(answeredProblems[currentPage].files || []);
 			setSubmittedLinks(answeredProblems[currentPage].links || []);
 		} else {
-			setCode("");
+			// Set default code based on the exam's language
+			if (data.language === "pandas") {
+				setCode(`# Please run and test your query in the provided notebook
+# (in the Notebook tab) and paste it in here.`);
+				setLanguage("pandas");
+			} else {
+				setCode("");
+				setLanguage(data.language || "");
+			}
 			setUploadedFiles([]);
 			setSubmittedLinks([]);
 		}
-	}, [currentPage, answeredProblems]);
+	}, [currentPage, answeredProblems, data.language]);
 
 	const currentProblem = data.content[currentPage - 1];
 
@@ -520,6 +529,15 @@ export default function ProblemClient({
 										ERD
 									</TabsTrigger>
 								)}
+								{language === "pandas" && (
+									<TabsTrigger
+										value="notebook"
+										className="hover:bg-gray-100 flex items-center gap-2"
+									>
+										<BiCodeBlock className="w-4 h-4" />
+										Notebook
+									</TabsTrigger>
+								)}
 								{/* <TabsTrigger
 									value="discussion"
 									className="hover:bg-gray-100 flex items-center gap-2"
@@ -548,6 +566,12 @@ export default function ProblemClient({
 									name="erd"
 									erdImageUrl="https://raw.githubusercontent.com/nikita-kazakov/chinook-sample-database/refs/heads/main/app/assets/images/chinook_erd.png"
 									erdName="Chinook"
+								/>
+							)}
+							{language === "pandas" && (
+								<ProblemDescription
+									name="notebook"
+									notebookUrl="https://colab.research.google.com/drive/1DHeatBNgM8fSefJ8Pw9yzNLx-JLTdwKf?usp=sharing"
 								/>
 							)}
 							{/* <ProblemDescription name="discussion" /> */}
@@ -946,7 +970,7 @@ export default function ProblemClient({
 										className="h-full 2xl:text-xl"
 										extensions={[
 											customKeymap(),
-											// EditorView.lineWrapping,  
+											// EditorView.lineWrapping,
 										]}
 									/>
 								)}
@@ -1102,7 +1126,7 @@ export default function ProblemClient({
 																{Math.round(
 																	file.size /
 																		1024
-																)}
+																)}{" "}
 																KB)
 															</div>
 														)
