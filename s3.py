@@ -45,8 +45,8 @@ def read_s3_file(bucket: str, s3_key: str):
 
 if __name__ == "__main__":
     upload_directory_to_s3("./frontend/src/docs", "cseassessment", "exams")
-    # upload_directory_to_s3("./backend/archive/solutions/",
-    #                        "cseassessment", "solutions")
+    upload_directory_to_s3("./backend/archive/solutions/",
+                           "cseassessment", "solutions")
     # bucket = 'cseassessment'
     # key = 'exams/M11.json'
 
