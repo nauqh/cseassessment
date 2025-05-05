@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 export default function PandasProblemIntro() {
 	return (
@@ -36,6 +37,34 @@ export default function PandasProblemIntro() {
 				</div>
 			</div>
 
+			<div className="bg-green-50 border border-green-200 p-4 rounded-md mt-4">
+				<div className="text-xs font-semibold text-green-700 mb-1">
+					IMPORTANT
+				</div>
+				<div className="space-y-2">
+					<p>
+						We will provide you with a Google Colab notebook for you to run and test your pandas query.
+					</p>
+					<p>
+						You should not run your query in the code editor here.
+					</p>
+					<p>
+						After running your code in the provided Colab notebook, simply copy and paste your answer in the submission box.
+					</p>
+					<p>
+						The Colab notebook link will be provided in the Notebook tab when you are working on the problems:
+					</p>
+					<a 
+						href="https://colab.research.google.com/drive/1hCx_Udtmdl4v5WmNsFyomG0JvPeaSZw0#scrollTo=081jUhieHuXy" 
+						target="_blank"
+						rel="noopener noreferrer"
+						className="underline font-medium"
+					>
+						Google Colab Notebook
+					</a>
+				</div>
+			</div>
+
 			<div className="mt-6">
 				<h3 className="font-bold text-lg mb-2">
 					Examples of expression:
@@ -50,7 +79,7 @@ export default function PandasProblemIntro() {
 
 			<div className="mt-4">
 				<h3 className="font-bold text-lg mb-2">
-					Examples of not an expression:
+					Examples of NOT an expression:
 				</h3>
 				<pre className="bg-zinc-950 text-zinc-50 p-4 font-mono text-sm rounded-md overflow-x-auto">
 					{`>>> x = y + 2

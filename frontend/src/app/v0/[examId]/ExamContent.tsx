@@ -76,24 +76,18 @@ export default function ExamContent({
 				</div>
 
 				<section className="prose prose-lg max-w-none">
+					<h2 className="text-2xl font-bold mt-8 mb-4">
+						EXAM INFORMATION
+					</h2>
 					<div className="bg-muted p-4 rounded-lg mb-8 space-y-4 text-xl">
 						<p>
 							This is a 2-hour exam. The timing is automatically
 							logged as soon as you submit your email.
 						</p>
-						<p>The passing grade for this exam is 80%.</p>
-
 						<p>
-							Exam will be graded within 1 working day. For sooner
-							grading, please send your request (including your
-							email and exam title) to{" "}
-							<Link
-								href="https://discord.com/channels/957854915194126336/1081063200377806899"
-								className="text-blue-500 hover:text-blue-700 underline"
-							>
-								#question-center
-							</Link>
-							.
+							The passing grade for this exam is 80%. Your
+							submission will be graded and return within 1
+							working day .
 						</p>
 					</div>
 
@@ -105,19 +99,28 @@ export default function ExamContent({
 							The exam begins once you submit your email.
 							Submissions made after the time limit will not be
 							processed. Your final grade will be based on the
-							total score of all <b>correctly submitted</b> answers.
-							Answers that are not submitted or are submitted in
-							the wrong format will be marked as incorrect.
+							total score of all <b>correctly submitted</b>{" "}
+							answers. Answers that are not submitted or are
+							submitted in the wrong format will be marked as
+							incorrect.
 						</li>
 						<li>
-							Once you completed your exam, a <b>copy of your submission</b> will be made available. Please ensure you keep this record for future reference, as we will not be responsible for any submission-related issues without it.
+							Once you completed your exam, a{" "}
+							<b>copy of your submission</b> will be made
+							available. Please ensure you keep this record for
+							future reference, as we will not be responsible for
+							any submission-related issues without it.
 						</li>
 						<li>
 							You may request to retake an exam multiple times. To
-							retake an exam, simply click on the exam link to proceed and resubmit using the <code className="bg-gray-100 rounded px-1">/submit</code> command on
-							Discord. You will be able to re-attempt the exam
-							once the result of your previous submission has been
-							released.
+							retake an exam, simply click on the exam link to
+							proceed and resubmit using the{" "}
+							<code className="bg-gray-100 rounded px-1">
+								/submit
+							</code>{" "}
+							command on Discord. You will be able to re-attempt
+							the exam once the result of your previous submission
+							has been released.
 						</li>
 						<li>
 							After finishing all of the sections in the module
@@ -126,10 +129,14 @@ export default function ExamContent({
 							access the next module.
 						</li>
 						<li>
-							By clicking on the START EXAM button, you acknowledge
-							that you have carefully read and understood these
-							policies, and that you shall accept your grade as a
-							fair result of your performance on the exam.
+							By clicking on the{" "}
+							<code className="bg-gray-100 rounded px-1">
+								START EXAM
+							</code>{" "}
+							button, you acknowledge that you have carefully read
+							and understood these policies, and that you shall
+							accept your grade as a fair result of your
+							performance on the exam.
 						</li>
 					</ol>
 
