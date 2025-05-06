@@ -24,12 +24,12 @@
         },
         {
             "choices": [
+                "a",
                 "b",
                 "c",
                 "d",
                 "e",
-                "f",
-                "g"
+                "f"
             ],
             "resultType": "MULTICHOICE_MANY",
             "question": "Given the following code:\n```\ns = \"Hello World Philippines!\"\n```\n\nWhich of the following are empty strings?\n\n```\na = s[:3]\nb = s[:-1:-1]\nc = s[0:-1:2]\nd = s[1:-2:-1]\ne = s[-1:0:-1]\nf = s[-3:-1]\n```\n\nChoose **at most** 2 correct choices."
