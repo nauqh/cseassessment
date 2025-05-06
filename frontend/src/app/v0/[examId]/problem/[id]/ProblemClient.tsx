@@ -114,15 +114,7 @@ export default function ProblemClient({
 			setUploadedFiles(answeredProblems[currentPage].files || []);
 			setSubmittedLinks(answeredProblems[currentPage].links || []);
 		} else {
-			// Set default code based on the exam's language
-			if (data.language === "pandas") {
-				setCode(`# Please run and test your query in the provided notebook
-# (in the Notebook tab) and paste it in here.`);
-				setLanguage("pandas");
-			} else {
-				setCode("");
-				setLanguage(data.language || "");
-			}
+			setCode("");
 			setUploadedFiles([]);
 			setSubmittedLinks([]);
 		}
