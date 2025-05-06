@@ -571,7 +571,7 @@ export default function ProblemClient({
 							{language === "pandas" && (
 								<ProblemDescription
 									name="notebook"
-									notebookUrl="https://colab.research.google.com/drive/1DHeatBNgM8fSefJ8Pw9yzNLx-JLTdwKf?usp=sharing"
+									notebookUrl="https://colab.research.google.com/drive/1Lsw2XMMMRqfqzTs2aid00BllhuUOfkWc?usp=sharing"
 								/>
 							)}
 							{/* <ProblemDescription name="discussion" /> */}
