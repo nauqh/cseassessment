@@ -328,8 +328,8 @@ export default function MultiChoiceClient({
 						{currentQuestion.choices && (
 							<div className="bg-white rounded-lg p-4 overflow-y-auto">
 								<div className="text-sm text-muted-foreground mb-2">
-									"Press any keys to select/deselect • Press
-									Enter to submit"
+									Press any keys to select/deselect • Press
+									Enter to submit
 								</div>
 
 								{isMultipleSelectionQuestion ? (
