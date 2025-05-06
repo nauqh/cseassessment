@@ -181,7 +181,7 @@ export default function MarkingClient({
 			"/view?usp=drive_link"
 		);
 
-		// Use feedback or fall back to submission summary if feedback is empty
+		// Always use the current feedback value
 		const feedbackContent = feedback || submission?.summary || "";
 
 		// Format the full feedback message
@@ -223,6 +223,8 @@ View your submission: https://csassessment.it.com/submissions/${submissionId}
 				throw new Error("Failed to save feedback");
 			}
 
+			// Update the submission object with the new feedback
+			setSubmission(prev => prev ? {...prev, feedback: feedback} : null);
 			setFeedbackSaved(true);
 			setFeedbackChanged(false);
 			toast({
