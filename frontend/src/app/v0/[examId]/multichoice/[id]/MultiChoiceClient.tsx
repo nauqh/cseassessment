@@ -39,8 +39,9 @@ export default function MultiChoiceClient({
 	const currentQuestion = data.content[id - 1];
 	const totalQuestions = data.content.length;
 	const { toast, dismiss } = useToast();
-	
-	const isMultipleSelectionQuestion = currentQuestion?.resultType === "MULTICHOICE_MANY";
+
+	const isMultipleSelectionQuestion =
+		currentQuestion?.resultType === "MULTICHOICE_MANY";
 
 	useEffect(() => {
 		if (id < data.content.length) {
@@ -64,7 +65,10 @@ export default function MultiChoiceClient({
 			};
 
 			setAnsweredQuestions(newAnswers);
-			localStorage.setItem("multichoiceAnswers", JSON.stringify(newAnswers));
+			localStorage.setItem(
+				"multichoiceAnswers",
+				JSON.stringify(newAnswers)
+			);
 		} else {
 			if (!selectedOption) {
 				toast({
@@ -80,7 +84,10 @@ export default function MultiChoiceClient({
 			};
 
 			setAnsweredQuestions(newAnswers);
-			localStorage.setItem("multichoiceAnswers", JSON.stringify(newAnswers));
+			localStorage.setItem(
+				"multichoiceAnswers",
+				JSON.stringify(newAnswers)
+			);
 		}
 
 		if (id < data.content.length) {
@@ -140,17 +147,20 @@ export default function MultiChoiceClient({
 				if (index < currentQuestion.choices.length) {
 					if (isMultipleSelectionQuestion) {
 						// Toggle the option for multichoice_many
-						setSelectedOptions(prev => {
+						setSelectedOptions((prev) => {
 							const optionId = key;
 							if (prev.includes(optionId)) {
-								return prev.filter(item => item !== optionId);
+								return prev.filter((item) => item !== optionId);
 							} else {
 								return [...prev, optionId].sort(); // Sort to maintain alphabetical order
 							}
 						});
 					} else {
-						// For single choice questions, just select the option
-						setSelectedOption(currentQuestion.choices[index]);
+						// For single choice questions, toggle selection
+						const choice = currentQuestion.choices[index];
+						setSelectedOption((prevOption) =>
+							prevOption === choice ? "" : choice
+						);
 					}
 				}
 			}
@@ -163,7 +173,7 @@ export default function MultiChoiceClient({
 		return () => {
 			window.removeEventListener("keydown", handleKeyPress);
 		};
-	}, [currentQuestion, selectedOption, handleSubmit, isMultipleSelectionQuestion, setSelectedOptions]);
+	}, [currentQuestion, handleSubmit, isMultipleSelectionQuestion]);
 
 	const handleReset = () => {
 		const newAnswers = { ...answeredQuestions };
@@ -221,9 +231,9 @@ export default function MultiChoiceClient({
 
 	const toggleOption = (option: string, index: number) => {
 		const optionId = String.fromCharCode(97 + index); // Convert index to a, b, c, etc.
-		setSelectedOptions(prev => {
+		setSelectedOptions((prev) => {
 			if (prev.includes(optionId)) {
-				return prev.filter(item => item !== optionId);
+				return prev.filter((item) => item !== optionId);
 			} else {
 				return [...prev, optionId].sort(); // Sort to maintain alphabetical order
 			}
@@ -318,13 +328,13 @@ export default function MultiChoiceClient({
 						{currentQuestion.choices && (
 							<div className="bg-white rounded-lg p-4 overflow-y-auto">
 								<div className="text-sm text-muted-foreground mb-2">
-									{isMultipleSelectionQuestion 
-										? "Press any keys to select/deselect • Press Enter to submit" 
+									{isMultipleSelectionQuestion
+										? "Press any keys to select/deselect • Press Enter to submit"
 										: "Press any key to select • Press Enter to submit"}
 								</div>
 
 								{isMultipleSelectionQuestion ? (
-									<div 
+									<div
 										className={cn(
 											"grid gap-2",
 											currentQuestion.choices.length > 4
@@ -340,8 +350,17 @@ export default function MultiChoiceClient({
 												>
 													<Checkbox
 														id={`checkbox-${choice}`}
-														checked={selectedOptions.includes(String.fromCharCode(97 + index))}
-														onChange={() => toggleOption(choice, index)}
+														checked={selectedOptions.includes(
+															String.fromCharCode(
+																97 + index
+															)
+														)}
+														onChange={() =>
+															toggleOption(
+																choice,
+																index
+															)
+														}
 													/>
 													<Label
 														htmlFor={`checkbox-${choice}`}
@@ -473,9 +492,17 @@ export default function MultiChoiceClient({
 											</p>
 											<p className="text-gray-600">
 												Selected:{" "}
-												{Array.isArray(answeredQuestions[index + 1])
-													? `${(answeredQuestions[index + 1] as string[]).join(", ")}`
-													: answeredQuestions[index + 1] || "Not answered"}
+												{Array.isArray(
+													answeredQuestions[index + 1]
+												)
+													? `${(
+															answeredQuestions[
+																index + 1
+															] as string[]
+													  ).join(", ")}`
+													: answeredQuestions[
+															index + 1
+													  ] || "Not answered"}
 											</p>
 										</div>
 									))}

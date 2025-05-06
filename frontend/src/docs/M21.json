@@ -32,7 +32,7 @@
                 "g"
             ],
             "resultType": "MULTICHOICE_MANY",
-            "question": "Given the following code:\n```\na = \"Hello World Philippines!\"\n```\n\nWhich of the following are empty strings?\n\n```\nb = a[:3]\nc = a[:-1:-1]\nd = a[0:-1:2]\ne = a[1:-2:-1]\nf = a[-1:0:-1]\ng = a[-3:-1]\n```\n\nChoose **at most** 2 correct choices."
+            "question": "Given the following code:\n```\ns = \"Hello World Philippines!\"\n```\n\nWhich of the following are empty strings?\n\n```\na = s[:3]\nb = s[:-1:-1]\nc = s[0:-1:2]\nd = s[1:-2:-1]\ne = s[-1:0:-1]\nf = s[-3:-1]\n```\n\nChoose **at most** 2 correct choices."
         },
         {
             "choices": [

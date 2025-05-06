@@ -14,8 +14,8 @@ config:
     type: MULTICHOICE
 3:
     answer:
-        - c
-        - e
+        - b
+        - d
     type: MULTICHOICE
 4:
     answer:
