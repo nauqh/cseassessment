@@ -12,6 +12,7 @@ import {
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
+import { FaExclamationTriangle } from "react-icons/fa";
 
 export default function ExamContent({
 	examId,
@@ -84,9 +85,7 @@ export default function ExamContent({
 							This is a 2-hour exam. The timing is automatically
 							logged as soon as you submit your email.
 						</p>
-						<p>
-							The passing grade for this exam is 80%. 
-						</p>
+						<p>The passing grade for this exam is 80%.</p>
 						<p>
 							Your submission will be graded and return within 1
 							working day.
@@ -143,9 +142,11 @@ export default function ExamContent({
 					</ol>
 
 					<div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 my-8">
-						<p className="text-yellow-700 font-semibold text-center">
-							⚠️ READ THE POLICIES ABOVE CAREFULLY BEFORE
-							PROCEEDING TO THE EXAM! ⚠️
+						<p className="text-yellow-700 font-semibold text-center flex items-center justify-center">
+							<FaExclamationTriangle className="mr-2 text-yellow-600" />
+							READ THE POLICIES ABOVE CAREFULLY BEFORE PROCEEDING
+							TO THE EXAM!
+							<FaExclamationTriangle className="ml-2 text-yellow-600" />
 						</p>
 					</div>
 
