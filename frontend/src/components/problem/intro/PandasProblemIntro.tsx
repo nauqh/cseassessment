@@ -23,7 +23,7 @@ export default function PandasProblemIntro() {
 					</p>
 				</div>
 				<Link
-					href="https://colab.research.google.com/drive/1hCx_Udtmdl4v5WmNsFyomG0JvPeaSZw0#scrollTo=081jUhieHuXy"
+					href="https://colab.research.google.com/drive/1Lsw2XMMMRqfqzTs2aid00BllhuUOfkWc?usp=sharing"
 					className="text-blue-600 hover:text-blue-800 underline"
 					target="_blank"
 				>
