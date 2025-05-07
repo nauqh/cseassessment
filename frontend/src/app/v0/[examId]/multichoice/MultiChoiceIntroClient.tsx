@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import { FaExclamationTriangle } from "react-icons/fa";
 
 export default function MultiChoiceIntroClient({ examId }: { examId: string }) {
 	const router = useRouter();
@@ -42,9 +43,10 @@ export default function MultiChoiceIntroClient({ examId }: { examId: string }) {
 						</ul>
 
 						<div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 mt-6">
-							<p className="text-yellow-700">
-								⚠️ Make sure you save your answers before moving
-								to the next section!
+							<p className="text-yellow-700 flex items-center">
+								<FaExclamationTriangle className="mr-2 text-yellow-600" />{" "}
+								Make sure you save your answers before moving to
+								the next section!
 							</p>
 						</div>
 					</div>
