@@ -84,7 +84,7 @@ config:
 15:
     type: SQL
     answer: |
-        SELECT c.FirstName || ' ' || c.LastName AS "Customer", SUM(i.Total) AS "Total Sales"
+        SELECT c.FirstName || ' ' || c.LastName AS "CustomerName", SUM(i.Total) AS "TotalSpending"
         FROM Customer c
         JOIN Invoice i ON c.CustomerId = i.CustomerId
         GROUP BY c.CustomerId, c.FirstName, c.LastName
@@ -93,7 +93,7 @@ config:
 16:
     type: SQL
     answer: |
-        SELECT m.FirstName || ' ' || m.LastName AS "Manager", COUNT(e.EmployeeId) AS "Number of Direct Reports"
+        SELECT m.FirstName || ' ' || m.LastName AS "ManagerName", COUNT(e.EmployeeId) AS "ManagedEmployees"
         FROM Employee e
         JOIN Employee m ON e.ReportsTo = m.EmployeeId
         GROUP BY m.EmployeeId, m.FirstName, m.LastName
