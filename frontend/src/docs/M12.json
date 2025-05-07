@@ -251,7 +251,7 @@
             ]
         },
         {
-            "question": "**Shows the total sales for each month along with the previous month's total sales and the difference between the two.**\n\nHint: Use the LAG() window function to compare month-over-month performance.",
+            "question": "**Shows the total sales for each month along with the previous month's total sales and the difference between the two.**\n\nBelow are the first 5 rows of the output.\n\nHint: Use the LAG() window function to compare month-over-month performance.",
             "resultType": "SQL",
             "tableData": [
                 {
