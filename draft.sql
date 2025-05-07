@@ -44,3 +44,16 @@ FROM
     MonthlySales
 ORDER BY
     Month;
+
+SELECT
+    c.CustomerId,
+    STRFTIME ('%Y-%m', i.InvoiceDate) AS Month,
+    SUM(i.Total) AS MonthlySpending
+FROM
+    Customer c
+    JOIN Invoice i ON c.CustomerId = i.CustomerId
+GROUP BY
+    c.CustomerId,
+    STRFTIME ('%Y-%m', i.InvoiceDate)
+HAVING
+    SUM(i.Total) > 20;

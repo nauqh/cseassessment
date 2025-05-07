@@ -251,7 +251,7 @@
             ]
         },
         {
-            "question": "**Shows the total sales for each month along with the previous month's total sales and the difference between the two.**\n\nBelow are the first 5 rows of the output.\n\nHint: Use the LAG() window function to compare month-over-month performance.",
+            "question": "**Shows the total sales for each month (e.g. 2009-01) along with the previous month's total sales and the difference between the two.**\n\nBelow are the first 5 rows of the output.\n\nHint: Use the LAG() window function to compare month-over-month performance.",
             "resultType": "SQL",
             "tableData": [
                 {
@@ -287,7 +287,7 @@
             ]
         },
         {
-            "question": "**Rank the albums by their total sales revenue.**\n\n Display the album's id, title and order by their ranking.\n\nBelow are the first 5 rows of the output.",
+            "question": "**Rank the albums by their total sales.**\n\n Display the album's id, title and order by their ranking.\n\nBelow are the first 5 rows of the output.",
             "resultType": "SQL",
             "tableData": [
                 {
@@ -323,64 +323,59 @@
             ]
         },
         {
-            "question": "**Find the total amount that each customer spent each month.**\n\n Display their full name and order by customer name and month\n\nBelow are the first 5 rows of the output.",
+            "question": "**Find the total amount that each customer spent each month.**\n\n Display their customer id and order by customer id and month (e.g. 2009-01)\n\nBelow are the first 5 rows of the output.",
             "resultType": "SQL",
             "tableData": [
                 {
-                    "CustomerName": "Luís Gonçalves",
-                    "Month": "03",
-                    "MonthlyTotal": 3.98
+                    "CustomerId": 1,
+                    "Month": "2010-03",
+                    "MonthlySpending": 3.98
                 },
                 {
-                    "CustomerName": "Luís Gonçalves",
-                    "Month": "05",
-                    "MonthlyTotal": 0.99
+                    "CustomerId": 1,
+                    "Month": "2010-06",
+                    "MonthlySpending": 3.96
                 },
                 {
-                    "CustomerName": "Luís Gonçalves",
-                    "Month": "06",
-                    "MonthlyTotal": 3.96
+                    "CustomerId": 1,
+                    "Month": "2010-09",
+                    "MonthlySpending": 5.94
                 },
                 {
-                    "CustomerName": "Luís Gonçalves",
-                    "Month": "08",
-                    "MonthlyTotal": 8.91
+                    "CustomerId": 1,
+                    "Month": "2011-05",
+                    "MonthlySpending": 0.99
                 },
                 {
-                    "CustomerName": "Luís Gonçalves",
-                    "Month": "09",
-                    "MonthlyTotal": 5.94
+                    "CustomerId": 1,
+                    "Month": "2012-10",
+                    "MonthlySpending": 1.98
                 }
             ]
         },
         {
-            "question": "**Find the total amount each customer spent each month. Include only customers who spent more than $45.**\n\nDisplay their full name and order the results by customer name and month\n\nBelow are the first 5 rows of the output.",
+            "question": "**Find the total amount each customer spends each month. Include only customers who spent more than $20.**\n\nDisplay their customer id, month and the amount spent that month.\n\nExpected output:",
             "resultType": "SQL",
             "tableData": [
                 {
-                    "CustomerName": "Helena Holý",
-                    "Month": "02",
-                    "MonthlyTotal": 1.98
+                    "CustomerId": 6,
+                    "Month": "2013-11",
+                    "MonthlySpending": 25.86
                 },
                 {
-                    "CustomerName": "Helena Holý",
-                    "Month": "04",
-                    "MonthlyTotal": 0.99
+                    "CustomerId": 26,
+                    "Month": "2012-08",
+                    "MonthlySpending": 23.86
                 },
                 {
-                    "CustomerName": "Helena Holý",
-                    "Month": "05",
-                    "MonthlyTotal": 3.96
+                    "CustomerId": 45,
+                    "Month": "2010-02",
+                    "MonthlySpending": 21.86
                 },
                 {
-                    "CustomerName": "Helena Holý",
-                    "Month": "07",
-                    "MonthlyTotal": 8.91
-                },
-                {
-                    "CustomerName": "Helena Holý",
-                    "Month": "08",
-                    "MonthlyTotal": 5.94
+                    "CustomerId": 46,
+                    "Month": "2011-04",
+                    "MonthlySpending": 21.86
                 }
             ]
         }
