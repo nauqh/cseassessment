@@ -293,31 +293,31 @@
                 {
                     "AlbumId": 253,
                     "Title": "Battlestar Galactica (Classic), Season 1",
-                    "Total Sales": 35.82,
+                    "TotalSales": 35.82,
                     "Rank": 1
                 },
                 {
                     "AlbumId": 251,
                     "Title": "The Office, Season 3",
-                    "Total Sales": 31.84,
+                    "TotalSales": 31.84,
                     "Rank": 2
                 },
                 {
                     "AlbumId": 23,
                     "Title": "Minha Historia",
-                    "Total Sales": 26.73,
+                    "TotalSales": 26.73,
                     "Rank": 3
                 },
                 {
                     "AlbumId": 228,
                     "Title": "Heroes, Season 1",
-                    "Total Sales": 25.87,
+                    "TotalSales": 25.87,
                     "Rank": 4
                 },
                 {
                     "AlbumId": 231,
                     "Title": "Lost, Season 2",
-                    "Total Sales": 25.87,
+                    "TotalSales": 25.87,
                     "Rank": 4
                 }
             ]
