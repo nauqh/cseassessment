@@ -287,7 +287,7 @@
             ]
         },
         {
-            "question": "**Rank the albums by their total sales revenue.**\n\n Display the album's id, title and order by their ranking.\n\n<br/>\n\n_Expected output_:\n\n ![](https://i.imgur.com/FZcMa9T.png)",
+            "question": "**Rank the albums by their total sales revenue.**\n\n Display the album's id, title and order by their ranking.\n\nBelow are the first 5 rows of the output.",
             "resultType": "SQL",
             "tableData": [
                 {
@@ -323,7 +323,7 @@
             ]
         },
         {
-            "question": "**Find the total amount that each customer spent each month.**\n\n Display their full name and order by customer name and month\n\n<br/>\n\n_Expected output_:\n\n ![](https://i.imgur.com/ivuvPEc.png)",
+            "question": "**Find the total amount that each customer spent each month.**\n\n Display their full name and order by customer name and month\n\nBelow are the first 5 rows of the output.",
             "resultType": "SQL",
             "tableData": [
                 {
@@ -354,7 +354,7 @@
             ]
         },
         {
-            "question": "**Find the total amount each customer spent each month. Include only customers who spent more than $45.**\n\nDisplay their full name and order the results by customer name and month\n\n<br/>\n\n_Expected output_: There must be total **35 rows** in the output\n\n ![](https://i.imgur.com/afqIXrv.png)",
+            "question": "**Find the total amount each customer spent each month. Include only customers who spent more than $45.**\n\nDisplay their full name and order the results by customer name and month\n\nBelow are the first 5 rows of the output.",
             "resultType": "SQL",
             "tableData": [
                 {
