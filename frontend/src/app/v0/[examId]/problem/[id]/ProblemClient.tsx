@@ -556,7 +556,7 @@ export default function ProblemClient({
 							{examId === "M12" && (
 								<ProblemDescription
 									name="erd"
-									erdImageUrl="https://raw.githubusercontent.com/nikita-kazakov/chinook-sample-database/refs/heads/main/app/assets/images/chinook_erd.png"
+									erdImageUrl="https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F29265097-a0bf-4aa0-b1ba-6489826f5852_852x706.png"
 									erdName="Chinook"
 								/>
 							)}
