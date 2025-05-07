@@ -64,7 +64,7 @@ export default function ZoomableImage({ src }: { src: string }) {
 	return (
 		<>
 			<span
-				className="relative inline-block cursor-pointer group"
+				className="relative inline-block cursor-pointer group p-4 rounded-lg border"
 				onClick={toggleZoom}
 			>
 				<Image
@@ -74,7 +74,7 @@ export default function ZoomableImage({ src }: { src: string }) {
 					height={600}
 					className="max-w-full h-auto"
 				/>
-				<span className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center pointer-events-none">
+				<span className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center pointer-events-none rounded-lg">
 					<MdZoomIn className="w-12 h-12 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 				</span>
 			</span>
@@ -87,7 +87,7 @@ export default function ZoomableImage({ src }: { src: string }) {
 						onClick={toggleZoom}
 					>
 						<div 
-							className="relative max-w-[90vw] max-h-[90vh] overflow-hidden bg-white rounded-md shadow-lg"
+							className="relative max-w-[90vw] max-h-[90vh] overflow-hidden bg-white rounded-md shadow-lg p-6 border border-gray-300"
 							onClick={(e) => e.stopPropagation()} 
 							onWheel={handleWheel}
 							onMouseDown={handleMouseDown}
