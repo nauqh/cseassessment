@@ -51,7 +51,7 @@ config:
 11:
     type: SQL
     answer: |
-        SELECT t.Name AS "Track Name", a.Title AS "Album Title"
+        SELECT t.Name AS "TrackName", a.Title AS "AlbumTitle"
         FROM Track t
         JOIN Album a ON t.AlbumId = a.AlbumId
         JOIN Artist ar ON a.ArtistId = ar.ArtistId
@@ -60,7 +60,7 @@ config:
 12:
     type: SQL
     answer: |
-        SELECT p.Name AS "Playlist", COUNT(pt.TrackId) AS "Number of Tracks"
+        SELECT p.Name AS "PlaylistName", COUNT(pt.TrackId) AS "TrackCount"
         FROM Playlist p
         JOIN PlaylistTrack pt ON p.PlaylistId = pt.PlaylistId
         GROUP BY p.PlaylistId, p.Name
@@ -68,7 +68,7 @@ config:
 13:
     type: SQL
     answer: |
-        SELECT a.Title AS "Album", SUM(il.UnitPrice * il.Quantity) AS "Total Revenue"
+        SELECT a.Title AS "AlbumTitle", SUM(il.UnitPrice * il.Quantity) AS "TotalRevenue"
         FROM Album a
         JOIN Track t ON a.AlbumId = t.AlbumId
         JOIN InvoiceLine il ON t.TrackId = il.TrackId

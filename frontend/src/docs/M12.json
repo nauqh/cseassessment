@@ -207,7 +207,7 @@
             ]
         },
         {
-            "question": "**Find customers that spend over $40 at Chinook store.**\n\n Display their full name and order by total spedning in descending order.\n\n<br/>\n\nBelow are the first 5 rows of the output.",
+            "question": "**Find customers that spend over $40 at Chinook store.**\n\n Display their full name and order by total spending in descending order.\n\n<br/>\n\nBelow are the first 5 rows of the output.",
             "resultType": "SQL",
             "tableData": [
                 {
