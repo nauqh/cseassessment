@@ -291,64 +291,34 @@
             "resultType": "SQL",
             "tableData": [
                 {
-                    "CustomerName": "Luís Gonçalves",
-                    "InvoiceId": 98,
-                    "InvoiceDate": "2010-03-11 00:00:00",
-                    "CumulativeSales": 3.98
+                    "AlbumId": 253,
+                    "Title": "Battlestar Galactica (Classic), Season 1",
+                    "Total Sales": 35.82,
+                    "Rank": 1
                 },
                 {
-                    "CustomerName": "Luís Gonçalves",
-                    "InvoiceId": 121,
-                    "InvoiceDate": "2010-06-13 00:00:00",
-                    "CumulativeSales": 7.94
+                    "AlbumId": 251,
+                    "Title": "The Office, Season 3",
+                    "Total Sales": 31.84,
+                    "Rank": 2
                 },
                 {
-                    "CustomerName": "Luís Gonçalves",
-                    "InvoiceId": 143,
-                    "InvoiceDate": "2010-09-15 00:00:00",
-                    "CumulativeSales": 13.88
+                    "AlbumId": 23,
+                    "Title": "Minha Historia",
+                    "Total Sales": 26.73,
+                    "Rank": 3
                 },
                 {
-                    "CustomerName": "Luís Gonçalves",
-                    "InvoiceId": 195,
-                    "InvoiceDate": "2011-05-06 00:00:00",
-                    "CumulativeSales": 14.87
+                    "AlbumId": 228,
+                    "Title": "Heroes, Season 1",
+                    "Total Sales": 25.87,
+                    "Rank": 4
                 },
                 {
-                    "CustomerName": "Luís Gonçalves",
-                    "InvoiceId": 316,
-                    "InvoiceDate": "2012-10-27 00:00:00",
-                    "CumulativeSales": 16.85
-                },
-                {
-                    "CustomerName": "Puja Srivastava",
-                    "InvoiceId": 45,
-                    "InvoiceDate": "2009-07-08 00:00:00",
-                    "CumulativeSales": 9.90
-                },
-                {
-                    "CustomerName": "Puja Srivastava",
-                    "InvoiceId": 97,
-                    "InvoiceDate": "2010-02-26 00:00:00",
-                    "CumulativeSales": 11.89
-                },
-                {
-                    "CustomerName": "Puja Srivastava",
-                    "InvoiceId": 218,
-                    "InvoiceDate": "2011-08-20 00:00:00",
-                    "CumulativeSales": 13.87
-                },
-                {
-                    "CustomerName": "Puja Srivastava",
-                    "InvoiceId": 229,
-                    "InvoiceDate": "2011-09-30 00:00:00",
-                    "CumulativeSales": 27.73
-                },
-                {
-                    "CustomerName": "Puja Srivastava",
-                    "InvoiceId": 284,
-                    "InvoiceDate": "2012-05-30 00:00:00",
-                    "CumulativeSales": 36.64
+                    "AlbumId": 231,
+                    "Title": "Lost, Season 2",
+                    "Total Sales": 25.87,
+                    "Rank": 4
                 }
             ]
         },
@@ -380,31 +350,6 @@
                     "CustomerName": "Luís Gonçalves",
                     "Month": "09",
                     "MonthlyTotal": 5.94
-                },
-                {
-                    "CustomerName": "Puja Srivastava",
-                    "Month": "04",
-                    "MonthlyTotal": 3.96
-                },
-                {
-                    "CustomerName": "Puja Srivastava",
-                    "Month": "05",
-                    "MonthlyTotal": 8.91
-                },
-                {
-                    "CustomerName": "Puja Srivastava",
-                    "Month": "07",
-                    "MonthlyTotal": 5.94
-                },
-                {
-                    "CustomerName": "Puja Srivastava",
-                    "Month": "08",
-                    "MonthlyTotal": 1.98
-                },
-                {
-                    "CustomerName": "Puja Srivastava",
-                    "Month": "09",
-                    "MonthlyTotal": 13.86
                 }
             ]
         },
@@ -436,41 +381,6 @@
                     "CustomerName": "Helena Holý",
                     "Month": "08",
                     "MonthlyTotal": 5.94
-                },
-                {
-                    "CustomerName": "Helena Holý",
-                    "Month": "10",
-                    "MonthlyTotal": 1.98
-                },
-                {
-                    "CustomerName": "Helena Holý",
-                    "Month": "11",
-                    "MonthlyTotal": 25.86
-                },
-                {
-                    "CustomerName": "Hugh O'Reilly",
-                    "Month": "02",
-                    "MonthlyTotal": 5.94
-                },
-                {
-                    "CustomerName": "Hugh O'Reilly",
-                    "Month": "03",
-                    "MonthlyTotal": 1.98
-                },
-                {
-                    "CustomerName": "Hugh O'Reilly",
-                    "Month": "04",
-                    "MonthlyTotal": 21.86
-                },
-                {
-                    "CustomerName": "Hugh O'Reilly",
-                    "Month": "08",
-                    "MonthlyTotal": 1.98
-                },
-                {
-                    "CustomerName": "Hugh O'Reilly",
-                    "Month": "09",
-                    "MonthlyTotal": 0.99
                 }
             ]
         }
