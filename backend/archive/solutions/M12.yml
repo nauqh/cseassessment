@@ -101,19 +101,23 @@ config:
 17:
     type: SQL
     answer: |
-        SELECT 
-            c.CustomerId,
-            c.FirstName || ' ' || c.LastName AS "Customer",
-            i.InvoiceDate,
-            i.Total,
-            SUM(i.Total) OVER (
-                PARTITION BY c.CustomerId 
-                ORDER BY i.InvoiceDate
-                ROWS UNBOUNDED PRECEDING
-            ) AS "Cumulative Sales"
-        FROM Customer c
-        JOIN Invoice i ON c.CustomerId = i.CustomerId
-        ORDER BY c.CustomerId, i.InvoiceDate;
+        SELECT
+            STRFTIME ('%Y-%m', InvoiceDate) AS "Month",
+            SUM(Total) AS "Sales",
+            LAG (SUM(Total), 1, 0) OVER (
+                ORDER BY
+                    STRFTIME ('%Y-%m', InvoiceDate)
+            ) AS "PreviousSales",
+            SUM(Total) - LAG (SUM(Total), 1, 0) OVER (
+                ORDER BY
+                    STRFTIME ('%Y-%m', InvoiceDate)
+            ) AS "Difference"
+        FROM
+            Invoice
+        GROUP BY
+            STRFTIME ('%Y-%m', InvoiceDate)
+        ORDER BY
+            "Month";
 18:
     type: SQL
     answer: |
