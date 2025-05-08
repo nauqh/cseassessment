@@ -1,10 +1,10 @@
-# CSE-Exam System: Comprehensive Documentation
+# CS eAssessment Platform
 
-This document provides a detailed overview of the eExam System, an online platform designed to deliver online exams for Coderschool's courses.
+This document provides a detailed overview of the eAssessment Platform, an online platform designed to deliver online exams for Coderschool's courses.
 
 ## Table of Contents
 
-- [CSE-Exam System: Comprehensive Documentation](#cse-exam-system-comprehensive-documentation)
+- [CS eAssessment Platform](#cs-eassessment-platform)
   - [Table of Contents](#table-of-contents)
   - [Project Overview](#project-overview)
   - [System Architecture](#system-architecture)
@@ -20,23 +20,20 @@ This document provides a detailed overview of the eExam System, an online platfo
   - [Folder Structure](#folder-structure)
     - [Frontend (Next.js)](#frontend-nextjs)
     - [Backend (FastAPI)](#backend-fastapi)
-  - [Authentication](#authentication)
+  - [Authentication (in development)](#authentication-in-development)
   - [Detailed Component Documentation](#detailed-component-documentation)
 
 ## Project Overview
 
-The Coderschool eExam System is a comprehensive online examination platform designed for Coderschool courses. It facilitates:
+The eAssessment Platform is a comprehensive online examination platform designed for Coderschool courses. It facilitates:
 
-- **Multiple-choice** assessment for theoretical knowledge
-- **Coding problems** with live code execution capabilities
+- Multiple-choice assessment for theoretical knowledge
+- Coding problems with live code execution capabilities
 - Real-time progress tracking and result compilation
-- Public & private exam modes
 
 The system follows a modular approach with distinct sections for different types of exams (SQL, Python, Pandas) and assessment types (multiple choice and coding problems).
 
 ## System Architecture
-
-The application follows a modern web architecture with a clear separation between frontend and backend components:
 
 ```mermaid
 graph LR
@@ -71,15 +68,15 @@ graph LR
 Key architectural components include:
 
 1. **Frontend Layer**: 
-   - React-based UI with Next.js for server-side rendering and route handling
-   - Client-side state management with React Hooks
-   - UI components built with Shadcn UI and styled with Tailwind CSS
+   - Next.js for server-side rendering and route handling
+   - State management with React Hooks
+   - Shadcn UI components with Tailwind CSS
 
 2. **Backend Layer**:
-   - FastAPI server for backend processing and API endpoints
-   - Exam code execution and evaluation
+   - FastAPI for backend processing and API endpoints
+   - Exam code execution and evaluation using pure Python
    - Submission processing and storage
-   - Websocket connections for real-time notifications
+   - Websocket connections for Discord realtime notifications
 
 3. **Authentication Layer**: 
    - Clerk for secure user authentication and session management
@@ -87,7 +84,7 @@ Key architectural components include:
 
 4. **Data Storage**: 
    - PostgreSQL database for storing user submissions and exam results
-   - AWS S3 for storing exam content, problem descriptions, and test cases
+   - AWS S3 for storing exam content, exam solutions, and test cases
 
 ## Key Features
 
@@ -112,13 +109,13 @@ Key architectural components include:
 - Custom scoring and feedback mechanisms
 
 <div style="display: flex;">
-  <img width="400" src="docs/imgs/multichoice.png" style="margin-right: 10px;">
-  <img width="400" src="docs/imgs/code.png">
+  <img width="400" src="./frontend/docs/imgs/multichoice.png" style="margin-right: 10px;">
+  <img width="400" src="./frontend/docs/imgs/code.png">
 </div>
 
 <div style="display: flex; margin-top: 10px;">
-  <img width="400" src="docs/imgs/query.png" style="margin-right: 10px;">
-  <img width="400" src="docs/imgs/submissions.png">
+  <img width="400" src="./frontend/docs/imgs/query.png" style="margin-right: 10px;">
+  <img width="400" src="./frontend/docs/imgs/submissions.png">
 </div>
 
 ## Tech Stack
@@ -127,17 +124,17 @@ Key architectural components include:
 - **Framework**: Next.js 15.1
 - **Language**: TypeScript
 - **State Management**: React Hooks
-- **Styling**: Tailwind CSS with custom components
-- **UI Components**: Shadcn UI with custom styling
-- **Code Editor (for code submission)**: CodeMirror with language-specific extensions
+- **Styling**: Tailwind CSS
+- **UI Components**: Shadcn UI
+- **Code Editor (for code submission)**: CodeMirror
 
 ### Backend
 - **Framework**: FastAPI
 - **Language**: Python
-- **Database**: PostgreSQL via SQLAlchemy ORM
-- **Storage**: AWS S3 for exam content and submissions
-- **Code Execution**: Secure Python and SQL code execution environment
-- **Real-time Communication (for Dicord bot)**: WebSockets for notifications
+- **Database**: PostgreSQL (Neon) via SQLAlchemy ORM
+- **Storage**: AWS S3
+- **Code Execution & Evaluation**: Python
+- **Real-time Notification (for Discord)**: WebSockets
 
 ## Application Flow
 
@@ -315,7 +312,7 @@ The application is organized into two main components:
 └── requirements.txt          # Python dependencies
 ```
 
-## Authentication
+## Authentication (in development)
 
 The application uses Clerk for authentication with custom middleware to:
 
@@ -324,6 +321,8 @@ The application uses Clerk for authentication with custom middleware to:
 - Allow public access to specific routes without authentication
 
 Authentication is handled through the middleware.ts file which creates route matchers for public routes and enforces authentication for all other routes.
+
+For now, the platform does not maintain user accounts and does not enforce authentication. Learners are required to input their emails to attempt the exam.
 
 ## Detailed Component Documentation
 
