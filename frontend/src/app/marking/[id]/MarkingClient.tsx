@@ -186,7 +186,6 @@ export default function MarkingClient({
 
 		// Format the full feedback message
 		const fullFeedbackMessage = `
-
 \`\`\`
 ${feedbackContent}
 \`\`\`
@@ -198,7 +197,7 @@ ${
 ${
 	submission?.score && submission.score >= 80
 		? `View solution: [Open solution](${shareableUrl})`
-		: ""
+		: null
 }
 
 View your submission: [Open review page](https://csassessment.it.com/submissions/${submissionId})
