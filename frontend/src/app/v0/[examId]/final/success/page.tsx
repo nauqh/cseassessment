@@ -63,7 +63,7 @@ export default function SubmissionSuccess() {
 						<div className="border-l-4 border-green-500 pl-4 py-2 text-left bg-green-50 rounded">
 							<p className="text-sm text-gray-600 mb-2">Your submission ID:</p>
 							<div className="flex items-center space-x-2">
-								<code className="bg-gray-50 px-2 py-1 rounded font-mono text-sm">
+								<code className="bg-white px-2 py-1 rounded font-mono text-sm font-semibold">
 									{submissionId}
 								</code>
 								<button
