@@ -549,7 +549,7 @@ export default function ProblemClient({
 							{examId === "M11" && (
 								<ProblemDescription
 									name="erd"
-									erdImageUrl="https://camo.githubusercontent.com/a0a377ee0279de8567c9fcb6492e04c76cde6bac5aeb04e2acf5b69b62fd9184/68747470733a2f2f7374617469632e7061636b742d63646e2e636f6d2f70726f64756374732f393738313738323137303930372f67726170686963732f30393037454e5f30325f30392e6a7067"
+									erdImageUrl="/northwinderd.svg"
 									erdName="Northwind"
 								/>
 							)}
