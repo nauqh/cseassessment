@@ -194,12 +194,12 @@ ${
 		? "❗You have FAILED the exam. Please retake the exam in order to unlock new module."
 		: "🎉 Congratulations! You have PASSED the exam."
 }
+
 ${
 	submission?.score && submission.score >= 80
 		? `View solution: [Open solution](${shareableUrl})`
 		: "Solution is not available for this submission."
 }
-
 View your submission: [Open review page](https://csassessment.it.com/submissions/${submissionId})
 		`.trim();
 
