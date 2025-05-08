@@ -190,10 +190,17 @@ export default function MarkingClient({
 \`\`\`
 ${feedbackContent}
 \`\`\`
-${(submission?.score && submission.score >= 80) ? `Solution: ${shareableUrl}` : ''}
-${(submission?.score && submission.score < 80) 
-  ? "❗You have FAILED the exam. Please retake the exam in order to unlock new module." 
-  : "🎉 Congratulations! You have PASSED the exam."}
+${
+	submission?.score && submission.score >= 80
+		? `Solution: ${shareableUrl}`
+		: ""
+}
+
+${
+	submission?.score && submission.score < 80
+		? "❗You have FAILED the exam. Please retake the exam in order to unlock new module."
+		: "🎉 Congratulations! You have PASSED the exam."
+}
 
 View your submission: https://csassessment.it.com/submissions/${submissionId}
 		`.trim();
@@ -224,7 +231,9 @@ View your submission: https://csassessment.it.com/submissions/${submissionId}
 			}
 
 			// Update the submission object with the new feedback
-			setSubmission(prev => prev ? {...prev, feedback: feedback} : null);
+			setSubmission((prev) =>
+				prev ? { ...prev, feedback: feedback } : null
+			);
 			setFeedbackSaved(true);
 			setFeedbackChanged(false);
 			toast({

@@ -1012,7 +1012,7 @@ export default function ProblemClient({
 												}
 												variant="success"
 											>
-												Review
+												Complete
 											</Button>
 										)}
 									</div>

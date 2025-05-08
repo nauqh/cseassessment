@@ -468,7 +468,7 @@ export default function MultiChoiceClient({
 									onClick={handleShowSummary}
 									variant="success"
 								>
-									Review
+									Complete
 								</Button>
 							)}
 						</div>
