@@ -210,7 +210,7 @@ graph TD
 
 The diagram above illustrates the flow of the CSE Exam System:
 
-1. **Direct Exam Access**:
+1. **Access exams**:
    - Learner visits the direct exam URL (e.g., https://csassessment/v0/M11)
    - Learner is prompted to provide their email
    - After providing email, learner can access the exam
@@ -218,31 +218,30 @@ The diagram above illustrates the flow of the CSE Exam System:
    - Backend retrieves the exam JSON from AWS S3
    - Exam content is delivered to the frontend
 
-2. **Exam Completion**:
+2. **Exam completion**:
    - Learner navigates through multiple choice questions and code problems
    - For multiple choice questions:
-     - Learner selects answers which are auto-saved
+     - Learner selects answers
      - Learner reviews answers and revises if needed
-     - Learner confirms answers
+     - Learner confirms all answers
    - For code problems:
-     - Learner writes code solutions in the embedded editor
+     - Learner writes code solutions in the code editor
      - Learner can run tests to validate their solutions
      - Learner can view test results and revise their code if needed
    - After completing all questions, learner submits the exam
 
-3. **Submission Processing**:
-   - Backend stores the submission in PostgreSQL
-   - Autograder evaluates code submissions and calculates scores
+3. **Submission processing**:
+   - Submission is stored in PostgreSQL
+   - Autograder evaluates submissions and calculates final scores
    - Notification is sent to Discord for monitoring
 
-4. **TA Marking Process**:
-   - TAs access the marking page
+4. **TA marking**:
+   - TAs access the `marking page` via Discord
    - TAs review submissions and provide feedback
    - Feedback is stored in the database
 
-5. **Learner Results Viewing**:
-   - Learners access the submissions page to view their results
-   - Backend returns results and feedback for their specific submissions
+5. **Learner viewing results**:
+   - Learners access the `submissions page` via Discord to view their results
 
 ## Folder Structure
 
@@ -266,8 +265,7 @@ The application is organized into two main components:
 │   └── /[submissionId]    # Specific submission results and feedback
 │
 ├── /marking               # TA marking interface
-│   ├── /[examId]          # View all submissions for a specific exam
-│   └── /submission/[id]   # Review and provide feedback for a specific submission
+│   ├── /[id]              # Review and provide feedback for a specific submission
 │
 └── /help                   # Report issue page
 ```
