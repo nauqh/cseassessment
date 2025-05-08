@@ -225,7 +225,7 @@ export default function ReviewClient({
 						</span>
 					</summary>
 					<div className="p-4 bg-gray-50 border-t border-gray-200 overflow-auto max-h-[400px]">
-						<pre className="whitespace-pre-wrap text-sm font-mono text-gray-700">
+						<pre className="whitespace-pre-wrap text-sm font-mono">
 							{submission.feedback}
 						</pre>
 					</div>
