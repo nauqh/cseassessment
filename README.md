@@ -19,6 +19,9 @@ This document provides a detailed overview of the eAssessment Platform, an onlin
   - [Application Flow](#application-flow)
   - [Folder Structure](#folder-structure)
     - [Frontend (Next.js)](#frontend-nextjs)
+  - [Exam Content Management](#exam-content-management)
+    - [Content Storage](#content-storage)
+    - [Automated S3 Synchronization](#automated-s3-synchronization)
     - [Backend (FastAPI)](#backend-fastapi)
   - [Authentication (in development)](#authentication-in-development)
   - [Detailed Component Documentation](#detailed-component-documentation)
@@ -268,6 +271,42 @@ The application is organized into two main components:
 │
 └── /help                   # Report issue page
 ```
+
+## Exam Content Management
+
+The system maintains exam content and solutions directly in the repository for easy version control and collaborative editing:
+
+### Content Storage
+
+- **Exam Content**: JSON files stored in `frontend/src/docs/` (e.g., M11.json, M12.json)
+- **Solutions**: YAML files stored in `backend/archive/solutions/` (e.g., M11.yml, M12.yml)
+- **Test Cases**: JSON files for automated testing in `backend/archive/solutions/` (e.g., M21_test_cases.json)
+
+### Automated S3 Synchronization
+
+When changes are pushed to the master branch, a GitHub Actions workflow automatically syncs these files to the S3 bucket:
+
+```yaml
+# .github/workflows/upload_to_s3.yml
+name: Upload Docs to S3
+
+on:
+    push:
+        branches: [master]
+        paths:
+            - "frontend/src/docs/**"
+            - "backend/archive/solutions/**"
+```
+
+The workflow uses a Python script (`s3.py`) that uploads:
+- Exam content from `frontend/src/docs/` to the `exams/` prefix in the S3 bucket
+- Solutions from `backend/archive/solutions/` to the `solutions/` prefix in the S3 bucket
+
+This approach provides several benefits:
+- Version control for all exam content and solutions
+- Easy collaborative editing through pull requests
+- Automatic deployment to production when changes are merged
+- Separation between content authoring and delivery
 
 ### Backend (FastAPI)
 
