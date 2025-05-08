@@ -20,13 +20,13 @@ export default function ZoomableImage({ src }: { src: string }) {
 
 	const handleWheel = useCallback((e: React.WheelEvent) => {
 		e.stopPropagation();
-		
+
 		// Prevent default to avoid page scrolling while zooming
 		e.preventDefault();
-		
+
 		// Adjust zoom level based on scroll direction
 		const delta = e.deltaY > 0 ? -0.1 : 0.1;
-		
+
 		// Keep zoom level within reasonable bounds
 		setZoomLevel((prevZoom) => {
 			const newZoom = prevZoom + delta;
@@ -34,28 +34,34 @@ export default function ZoomableImage({ src }: { src: string }) {
 		});
 	}, []);
 
-	const handleMouseDown = useCallback((e: React.MouseEvent) => {
-		// Only enable dragging if zoomed in beyond 1
-		if (zoomLevel > 1) {
-			setIsDragging(true);
-			dragStartRef.current = { x: e.clientX, y: e.clientY };
-			panStartRef.current = { ...panPosition };
-			e.preventDefault();
-		}
-	}, [zoomLevel, panPosition]);
+	const handleMouseDown = useCallback(
+		(e: React.MouseEvent) => {
+			// Only enable dragging if zoomed in beyond 1
+			if (zoomLevel > 1) {
+				setIsDragging(true);
+				dragStartRef.current = { x: e.clientX, y: e.clientY };
+				panStartRef.current = { ...panPosition };
+				e.preventDefault();
+			}
+		},
+		[zoomLevel, panPosition]
+	);
 
-	const handleMouseMove = useCallback((e: React.MouseEvent) => {
-		if (isDragging) {
-			const dx = e.clientX - dragStartRef.current.x;
-			const dy = e.clientY - dragStartRef.current.y;
-			
-			setPanPosition({
-				x: panStartRef.current.x + dx,
-				y: panStartRef.current.y + dy
-			});
-			e.preventDefault();
-		}
-	}, [isDragging]);
+	const handleMouseMove = useCallback(
+		(e: React.MouseEvent) => {
+			if (isDragging) {
+				const dx = e.clientX - dragStartRef.current.x;
+				const dy = e.clientY - dragStartRef.current.y;
+
+				setPanPosition({
+					x: panStartRef.current.x + dx,
+					y: panStartRef.current.y + dy,
+				});
+				e.preventDefault();
+			}
+		},
+		[isDragging]
+	);
 
 	const handleMouseUp = useCallback(() => {
 		setIsDragging(false);
@@ -86,21 +92,34 @@ export default function ZoomableImage({ src }: { src: string }) {
 						className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center"
 						onClick={toggleZoom}
 					>
-						<div 
-							className="relative max-w-[90vw] max-h-[90vh] overflow-hidden bg-white rounded-md shadow-lg p-6 border border-gray-300"
-							onClick={(e) => e.stopPropagation()} 
+						<div
+							className="relative max-w-[90vw] max-h-[90vh] overflow-hidden bg-white rounded-md shadow-lg p-6"
+							onClick={(e) => e.stopPropagation()}
 							onWheel={handleWheel}
 							onMouseDown={handleMouseDown}
 							onMouseMove={handleMouseMove}
 							onMouseUp={handleMouseUp}
 							onMouseLeave={handleMouseUp}
-							style={{ cursor: zoomLevel > 1 ? (isDragging ? 'grabbing' : 'grab') : 'default' }}
+							style={{
+								cursor:
+									zoomLevel > 1
+										? isDragging
+											? "grabbing"
+											: "grab"
+										: "default",
+							}}
 						>
-							<div style={{ 
-								transform: `scale(${zoomLevel}) translate(${panPosition.x / zoomLevel}px, ${panPosition.y / zoomLevel}px)`, 
-								transformOrigin: 'center', 
-								transition: isDragging ? 'none' : 'transform 0.1s ease-out' 
-							}}>
+							<div
+								style={{
+									transform: `scale(${zoomLevel}) translate(${
+										panPosition.x / zoomLevel
+									}px, ${panPosition.y / zoomLevel}px)`,
+									transformOrigin: "center",
+									transition: isDragging
+										? "none"
+										: "transform 0.1s ease-out",
+								}}
+							>
 								<Image
 									src={src}
 									alt="Zoomed diagram"
