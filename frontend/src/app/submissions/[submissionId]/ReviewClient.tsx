@@ -170,7 +170,9 @@ export default function ReviewClient({
 			<div className="bg-white rounded-lg py-6 mb-8">
 				<div className="flex flex-col sm:flex-row justify-between items-start gap-4 w-full">
 					<div className="w-full">
-						<h1 className="text-2xl font-bold">Your Exam Results</h1>
+						<h1 className="text-2xl font-bold">
+							Your Exam Results
+						</h1>
 						<div className="text-muted-foreground mt-1">
 							<span className="font-medium">
 								{submission.exam_name}
@@ -191,7 +193,7 @@ export default function ReviewClient({
 							</div>
 							<div className="flex flex-col">
 								<span className="text-muted-foreground text-sm">
-									Submitted
+									Submitted (UTC)
 								</span>
 								<span className="font-semibold text-sm sm:text-base">
 									{new Date(
@@ -218,10 +220,14 @@ export default function ReviewClient({
 							<BsListUl className="inline-block text-muted-foreground" />
 							Summary
 						</span>
-						<span className="text-xs text-muted-foreground opacity-60">Click to view</span>
+						<span className="text-xs text-muted-foreground opacity-60">
+							Click to view
+						</span>
 					</summary>
 					<div className="p-4 bg-gray-50 border-t border-gray-200 overflow-auto max-h-[400px]">
-						<pre className="whitespace-pre-wrap text-sm leading-relaxed text-gray-700">{submission.feedback}</pre>
+						<pre className="whitespace-pre-wrap text-sm leading-relaxed text-gray-700">
+							{submission.feedback}
+						</pre>
 					</div>
 				</details>
 			</div>

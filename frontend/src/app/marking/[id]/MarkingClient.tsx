@@ -310,7 +310,7 @@ View your submission: [Open review page](https://csassessment.it.com/submissions
 							</div>
 							<div className="flex flex-col">
 								<span className="text-muted-foreground text-sm">
-									Submitted
+									Submitted (UTC)
 								</span>
 								<span className="font-semibold text-sm sm:text-base">
 									{new Date(
