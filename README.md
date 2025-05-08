@@ -207,37 +207,39 @@ graph TD
 
 The diagram above illustrates the flow of the CSE Exam System:
 
-1. **User Authentication**:
-   - User visits the application
-   - Authentication is handled via Clerk
-   - Upon successful login, user is redirected to the landing page
-
-2. **Exam Retrieval**:
-   - User selects an exam from the landing page
+1. **Direct Exam Access**:
+   - Learner visits the direct exam URL (e.g., https://csassessment/v0/M11)
+   - Learner is prompted to provide their email
+   - After providing email, learner can access the exam
    - Frontend requests exam data from the FastAPI backend
    - Backend retrieves the exam JSON from AWS S3
    - Exam content is delivered to the frontend
 
-3. **Exam Completion**:
-   - User navigates through multiple choice questions and code problems
+2. **Exam Completion**:
+   - Learner navigates through multiple choice questions and code problems
    - For multiple choice questions:
-     - User selects answers which are auto-saved
-     - User reviews answers and revises if needed
-     - User confirms answers
+     - Learner selects answers which are auto-saved
+     - Learner reviews answers and revises if needed
+     - Learner confirms answers
    - For code problems:
-     - User writes code solutions in the embedded editor
-     - User can run tests to validate their solutions
-     - User can view test results and revise their code if needed
-   - After completing all questions, user submits the exam
+     - Learner writes code solutions in the embedded editor
+     - Learner can run tests to validate their solutions
+     - Learner can view test results and revise their code if needed
+   - After completing all questions, learner submits the exam
 
-4. **Submission Processing**:
+3. **Submission Processing**:
    - Backend stores the submission in PostgreSQL
    - Autograder evaluates code submissions and calculates scores
-   - Optional WebSocket notification is sent to Discord for monitoring
+   - Notification is sent to Discord for monitoring
 
-5. **Results Display**:
-   - Results are sent back to the frontend
-   - User sees their score and feedback
+4. **TA Marking Process**:
+   - TAs access the marking page
+   - TAs review submissions and provide feedback
+   - Feedback is stored in the database
+
+5. **Learner Results Viewing**:
+   - Learners access the submissions page to view their results
+   - Backend returns results and feedback for their specific submissions
 
 ## Folder Structure
 
@@ -246,37 +248,25 @@ The application is organized into two main components:
 ### Frontend (Next.js)
 
 ```
-/ (Home)                    # Landing page
-├── /auth                   # Authentication routes managed by Clerk
-│   ├── /sign-in           
-│   └── /sign-up          
+/ (Home)                    # Landing page with information about the assessment system
 │
-├── /exams                  # Main exam portal listing available exams
+├── /v0                     # Direct exam access (No authentication required)
 │   └── /[examId]           # Specific exam page (M11, M12, M21, M31)
-│       ├── /multichoice    # Multiple choice section with 20 questions
-│       │   └── /[id]       
+│       ├── /multichoice    # Multiple choice section with questions
+│       │   └── /[id]       # Individual multiple choice question
 │       ├── /problem        # Coding problems section
-│       │   └── /[id]      
+│       │   └── /[id]       # Individual coding problem
 │       └── /final          # Final submission and review page
-│           └── /success   
-├── /help                   # Report issue page
+│           └── /success    # Submission confirmation page
 │
-├── /profile                # User profile and settings management
-│   ├── /?view=history    
-│   └── /?view=settings   
+├── /submissions           # Learner results viewing page
+│   └── /[submissionId]    # Specific submission results and feedback
 │
-├── /courses                # Course catalog and learning materials
-│   └── /[courseId]         # Individual course page
-│       └── /assignments    # Course assignments and practice problems
+├── /marking               # TA marking interface
+│   ├── /[examId]          # View all submissions for a specific exam
+│   └── /submission/[id]   # Review and provide feedback for a specific submission
 │
-├── /v0                     # Public version of exam system (No need to sign in)
-│   └── /[examId]        
-│       ├── /multichoice 
-│       ├── /problem      
-│       └── /final       
-│
-└── /submissions          # Submission review and results
-    └── /[examId]/[submissionId] 
+└── /help                   # Report issue page
 ```
 
 ### Backend (FastAPI)
