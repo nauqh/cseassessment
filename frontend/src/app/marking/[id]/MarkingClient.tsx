@@ -191,15 +191,14 @@ export default function MarkingClient({
 ${feedbackContent}
 \`\`\`
 ${
-	submission?.score && submission.score >= 80
-		? `Solution: ${shareableUrl}`
-		: ""
-}
-
-${
 	submission?.score && submission.score < 80
 		? "❗You have FAILED the exam. Please retake the exam in order to unlock new module."
 		: "🎉 Congratulations! You have PASSED the exam."
+}
+${
+	submission?.score && submission.score >= 80
+		? `View solution: [Open solution](${shareableUrl})`
+		: ""
 }
 
 View your submission: [Open review page](https://csassessment.it.com/submissions/${submissionId})
