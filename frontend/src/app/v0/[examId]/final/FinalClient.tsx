@@ -39,6 +39,7 @@ export default function FinalClient({ examId }: { examId: string }) {
 		let content = `${examResults.exam_name} EXAM SUBMISSION\n`;
 		content += `${"=".repeat(examResults.exam_name.length + 16)}\n\n`;
 		content += `Email: ${examResults.email}\n`;
+		content += `Submission ID: ${submissionId}\n`;
 		content += `Exam ID: ${examResults.exam_id}\n`;
 		content += `Date: ${new Date().toLocaleString(undefined, {
 			timeZoneName: "short",
