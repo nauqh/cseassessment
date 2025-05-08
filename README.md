@@ -140,14 +140,10 @@ Key architectural components include:
 
 ```mermaid
 graph TD
-    %% User Authentication Flow
-    A[User] -->|Visits site| B[Next.js Frontend]
-    B -->|Authentication request| C[Clerk Auth Service]
-    C -->|Auth response| B
-    
-    %% Exam Retrieval Flow
-    B -->|Authenticated user| D[Landing Page]
-    D -->|Select exam| E[Exam Page]
+    %% Direct Exam Access Flow
+    A[Learner] -->|Visits direct exam URL| E[Exam Page]
+    E -->|Prompt for email| A
+    A -->|Provides email| E
     E -->|Request exam data| F[FastAPI Backend]
     F -->|Query exam| G[AWS S3]
     G -->|Return exam JSON| F
@@ -174,11 +170,21 @@ graph TD
     F -->|Run tests/grading| J[Autograder]
     J -->|Return results| F
     F -->|Optional| K[WebSocket Notification]
-    K -->|Notify| L[Discord Bot]
+    K -->|Notify| L[Discord]
     
-    %% Results Display
-    F -->|Send results| B
-    B -->|Display results| M[Results Page]
+    %% Results Flow
+    F -->|Submission data| P[Next.js Frontend]
+    
+    %% TA Marking Flow
+    P -->|TA access| N[Marking Page]
+    N -->|Review submissions| F
+    N -->|Provide feedback| F
+    F -->|Store feedback| I
+    
+    %% Learner Results Flow
+    P -->|Learner access| O[Submissions Page]
+    O -->|Request results| F
+    F -->|Return results/feedback| O
     
     %% Style definitions
     classDef frontend fill:#47b8e0,stroke:#333,stroke-width:1px,color:white;
@@ -186,13 +192,17 @@ graph TD
     classDef external fill:#9e86c8,stroke:#333,stroke-width:1px,color:white;
     classDef database fill:#68c964,stroke:#333,stroke-width:1px,color:white;
     classDef questions fill:#f9c74f,stroke:#333,stroke-width:1px,color:black;
+    classDef taflow fill:#f472b6,stroke:#333,stroke-width:1px,color:white;
+    classDef learnerflow fill:#60a5fa,stroke:#333,stroke-width:1px,color:white;
     
     %% Apply styles
-    class B,D,E,H,M frontend;
+    class E,H,P frontend;
     class F,J,K backend;
-    class C,L external;
+    class L external;
     class G,I database;
     class E1,E2,E1a,E2a,E2b questions;
+    class N taflow;
+    class O learnerflow;
 ```
 
 The diagram above illustrates the flow of the CSE Exam System:
