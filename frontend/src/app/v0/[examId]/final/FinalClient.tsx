@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { Toaster } from "@/components/ui/toaster";
 import { useRouter } from "next/navigation";
-import { useSearchParams } from "next/navigation";
 import SubmittingOverlay from "@/components/SubmittingOverlay";
 import {
 	ExamResults,
