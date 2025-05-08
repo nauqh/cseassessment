@@ -291,11 +291,11 @@ When changes are pushed to the master branch, a GitHub Actions workflow automati
 name: Upload Docs to S3
 
 on:
-    push:
-        branches: [master]
-        paths:
-            - "frontend/src/docs/**"
-            - "backend/archive/solutions/**"
+  push:
+    branches: [master]
+    paths:
+        - "frontend/src/docs/**"
+        - "backend/archive/solutions/**"
 ```
 
 The workflow uses a Python script (`s3.py`) that uploads:
