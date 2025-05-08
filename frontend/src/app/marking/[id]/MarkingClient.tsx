@@ -197,7 +197,7 @@ ${
 ${
 	submission?.score && submission.score >= 80
 		? `View solution: [Open solution](${shareableUrl})`
-		: null
+		: "Solution is not available for this submission."
 }
 
 View your submission: [Open review page](https://csassessment.it.com/submissions/${submissionId})
