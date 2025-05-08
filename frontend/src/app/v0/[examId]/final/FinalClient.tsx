@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { Toaster } from "@/components/ui/toaster";
 import { useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import SubmittingOverlay from "@/components/SubmittingOverlay";
 import {
 	ExamResults,
@@ -15,6 +16,7 @@ import {
 export default function FinalClient({ examId }: { examId: string }) {
 	const [isSubmitting, setIsSubmitting] = useState(false);
 	const [response, setResponse] = useState("");
+	const [submissionId, setSubmissionId] = useState("");
 	const { toast } = useToast();
 	const router = useRouter();
 
@@ -206,6 +208,7 @@ export default function FinalClient({ examId }: { examId: string }) {
 
 			const data = await response.json();
 			setResponse(data);
+			setSubmissionId(data.submission_id || "");
 
 			if (!response.ok) {
 				throw new Error(`HTTP error! status: ${response.status}`);
@@ -219,7 +222,7 @@ export default function FinalClient({ examId }: { examId: string }) {
 
 			// Short delay to ensure download starts before navigation
 			setTimeout(() => {
-				router.replace(`/v0/${examId}/final/success`);
+				router.replace(`/v0/${examId}/final/success?submission_id=${data.submission_id || ""}`);
 			}, 1000);
 		} catch (error) {
 			toast({
