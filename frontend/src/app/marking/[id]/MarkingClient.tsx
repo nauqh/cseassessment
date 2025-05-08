@@ -202,7 +202,7 @@ ${
 		: "🎉 Congratulations! You have PASSED the exam."
 }
 
-View your submission: https://csassessment.it.com/submissions/${submissionId}
+View your submission: [Open review page](https://csassessment.it.com/submissions/${submissionId})
 		`.trim();
 
 		navigator.clipboard.writeText(fullFeedbackMessage);
