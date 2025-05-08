@@ -1154,7 +1154,8 @@ class Utils:
 
         Args:
             query: SQL query string
-            connection: Database connection object
+            database: Database name to connect to
+            connection: Database connection object (optional)
 
         Returns:
             Dict containing execution results or error message
@@ -1168,9 +1169,15 @@ class Utils:
                     "error": "Could not establish database connection"
                 }
 
-            df = pd.read_sql_query(query, conn)
+            # Configure pandas to not decode binary data by using object dtype
+            # This prevents the UnicodeDecodeError when dealing with binary data like photos
+            df = pd.read_sql_query(
+                query, 
+                conn,
+                dtype=object  # Use object dtype to prevent automatic decoding
+            )
 
-            if connection:
+            if not connection:
                 conn.close()
 
             return {
