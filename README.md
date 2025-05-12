@@ -367,7 +367,7 @@ For now, the platform does not maintain user accounts and does not enforce authe
 
 For more detailed documentation on specific components and functionality, please refer to the dedicated documentation files:
 
-- [User Guide](./docs/USER_GUIDE.md) - Guide for students and administrators
-- [Backend API](./docs/BACKEND_API.md) - Documentation of FastAPI endpoints
-- [Technical Configuration](./docs/TECHNICAL.md) - Server and environment setup
-- [Exam Types](./docs/EXAM_TYPES.md) - Different problem types and grading
+- [User Guide](./frontend/docs/USER_GUIDE.md) - Guide for students and administrators
+- [Backend API](./frontend/docs/BACKEND_API.md) - Documentation of FastAPI endpoints
+- [Technical Configuration](./frontend/docs/TECHNICAL.md) - Server and environment setup
+- [Exam Types](./frontend/docs/EXAM_TYPES.md) - Different problem types and grading
