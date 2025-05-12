@@ -10,11 +10,6 @@ Disclaimer: Current rollout does not include authentication and authorization fe
   - [Table of Contents](#table-of-contents)
   - [Project Overview](#project-overview)
   - [System Architecture](#system-architecture)
-  - [Key Features](#key-features)
-    - [1. Authentication and Authorization](#1-authentication-and-authorization)
-    - [2. Exam Types](#2-exam-types)
-    - [3. User Experience](#3-user-experience)
-    - [4. Administration](#4-administration)
   - [Tech Stack](#tech-stack)
     - [Frontend](#frontend)
     - [Backend](#backend)
@@ -91,7 +86,7 @@ Key architectural components include:
    - PostgreSQL database for storing user submissions and exam results
    - AWS S3 for storing exam content, exam solutions, and test cases
 
-## Key Features
+<!-- ## Key Features
 
 ### 1. Authentication and Authorization
 - User registration and login via Clerk
@@ -121,17 +116,15 @@ Key architectural components include:
 <div style="display: flex; margin-top: 10px;">
   <img width="400" src="./frontend/docs/imgs/query.png" style="margin-right: 10px;">
   <img width="400" src="./frontend/docs/imgs/submissions.png">
-</div>
+</div> -->
 
 ## Tech Stack
 
 ### Frontend
-- **Framework**: Next.js 15.1
+- **Framework**: Next.js 15
 - **Language**: TypeScript
-- **State Management**: React Hooks
 - **Styling**: Tailwind CSS
 - **UI Components**: Shadcn UI
-- **Code Editor (for code submission)**: CodeMirror
 
 ### Backend
 - **Framework**: FastAPI
