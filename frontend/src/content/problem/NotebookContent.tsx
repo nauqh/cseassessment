@@ -15,7 +15,7 @@ const NotebookContent = ({ notebookUrl }: { notebookUrl?: string }) => {
 			</div>
 			<div className="mt-4">
 				{notebookUrl ? (
-					<div className="flex flex-col items-start space-y-3">
+					<div className="flex flex-col items-start">
 						<Link
 							href={notebookUrl}
 							target="_blank"
@@ -25,17 +25,6 @@ const NotebookContent = ({ notebookUrl }: { notebookUrl?: string }) => {
 							<BiCodeBlock className="mr-2 h-5 w-5" />
 							Open Google Colab Notebook
 						</Link>
-						<div className="text-sm text-gray-600 mt-2">
-							<p>
-								The notebook will open in a new tab. You can use
-								it to:
-							</p>
-							<ul className="list-disc pl-5 mt-1 space-y-1">
-								<li>Test your pandas queries interactively</li>
-								<li>Visualize your data and results</li>
-								<li>Experiment with different approaches</li>
-							</ul>
-						</div>
 
 						<div className="mt-4 p-4 rounded-md border border-gray-200">
 							<h4 className="text-md font-medium mb-2">Schema</h4>

@@ -6,7 +6,7 @@ import { keymap } from "@codemirror/view";
 import { Prec } from "@codemirror/state";
 import {
 	BiHelpCircle,
-	BiNetworkChart,
+	BiBarChartSquare,
 	BiX,
 	BiUpload,
 	BiLinkAlt,
@@ -517,7 +517,7 @@ export default function ProblemClient({
 										value="erd"
 										className="hover:bg-gray-100 flex items-center gap-2"
 									>
-										<BiNetworkChart className="w-4 h-4" />
+										<BiBarChartSquare className="w-4 h-4" />
 										ERD
 									</TabsTrigger>
 								)}
