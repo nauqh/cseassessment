@@ -971,6 +971,7 @@ export default function ProblemClient({
 
 						{language !== "text" &&
 						language !== "link" &&
+						language !== "pandas" &&
 						language !== "file" ? (
 							<>
 								<ResizableHandle className="w-1 bg-gray-50 hover:bg-gray-100 cursor-col-resize" />
