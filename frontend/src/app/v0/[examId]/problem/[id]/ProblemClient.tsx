@@ -506,7 +506,9 @@ export default function ProblemClient({
 							defaultValue="description"
 							className="overflow-auto [&::-webkit-scrollbar]:w-0.5 [&::-webkit-scrollbar-thumb]:bg-gray-300 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100"
 						>
-							<TabsList className="grid w-full grid-cols-3 bg-gray-50 rounded-none sticky top-0 z-10">
+							<TabsList 
+								className={`grid w-full ${["M12", "M11"].includes(examId) ? "grid-cols-3" : examId === "M31" ? "grid-cols-2" : "grid-cols-1"} bg-gray-50 rounded-none sticky top-0 z-10`}
+							>
 								<TabsTrigger
 									value="description"
 									className="hover:bg-gray-100 flex items-center gap-2"
