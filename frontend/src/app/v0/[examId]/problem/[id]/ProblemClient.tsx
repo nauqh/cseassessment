@@ -617,18 +617,20 @@ export default function ProblemClient({
 										Input
 									</h1>
 
-									<span className="text-xs text-gray-500">
-										<span className="text-xs text-gray-500 bg-gray-100 p-2 rounded-md">
-											Ctrl+Enter
-										</span>
-										{" to run code"}
-									</span>
-									<span className="text-xs text-gray-500">
-										<span className="text-xs text-gray-500 bg-gray-100 p-2 rounded-md">
-											Shift+Enter
-										</span>
-										{" to submit"}
-									</span>
+									<div className="flex items-center gap-2 text-xs text-muted-foreground">
+										<div className="flex items-center gap-1">
+											<kbd className="px-1.5 py-0.5 text-xs rounded bg-gray-100 border border-gray-200">
+												⌘/Ctrl+Enter
+											</kbd>
+											<span>to run code</span>
+										</div>
+										<div className="flex items-center gap-1">
+											<kbd className="px-1.5 py-0.5 text-xs rounded bg-gray-100 border border-gray-200">
+												Shift+Enter
+											</kbd>
+											<span>to submit</span>
+										</div>
+									</div>
 								</div>
 								<Select
 									value={language}

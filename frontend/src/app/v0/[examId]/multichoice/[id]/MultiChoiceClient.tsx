@@ -13,6 +13,7 @@ import {
 	TooltipProvider,
 	TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { BsKeyboard } from "react-icons/bs";
 
 import { useRouter } from "next/navigation";
 import ReactMarkdown from "react-markdown";
@@ -334,25 +335,41 @@ export default function MultiChoiceClient({
 
 						{currentQuestion.choices && (
 							<div className="bg-white rounded-lg p-4 overflow-y-auto">
-								<div className="text-sm text-muted-foreground mb-2">
+								<div className="flex items-center gap-1.5 text-sm text-muted-foreground mb-2">
 									<TooltipProvider>
 										<Tooltip>
-											<TooltipTrigger className="flex items-center gap-2">
-												Keyboard shortcuts
-												<InfoIcon className="h-4 w-4 text-muted-foreground" />
+											<TooltipTrigger className="flex items-center gap-1 hover:text-foreground transition-colors">
+												Shortcuts
+												<InfoIcon className="h-4 w-4" />
 											</TooltipTrigger>
-											<TooltipContent side="right">
-												<p>
-													Press <strong>A</strong>,{" "}
-													<strong>B</strong>,{" "}
-													<strong>C</strong>,.. to
-													pick your answer.
-												</p>
-												<p>
-													Then hit{" "}
-													<strong>Enter</strong> to
-													submit!
-												</p>
+											<TooltipContent
+												side="right"
+												className="text-xs"
+											>
+												<div className="space-y-1">
+													<div>
+														Press{" "}
+														<kbd className="px-1 py-0.5 text-xs rounded bg-muted text-primary border border-primary">
+															A
+														</kbd>
+														,{" "}
+														<kbd className="px-1 py-0.5 text-xs rounded bg-muted text-primary border border-primary">
+															B
+														</kbd>
+														,{" "}
+														<kbd className="px-1 py-0.5 text-xs rounded bg-muted text-primary border border-primary">
+															C
+														</kbd>
+														... to pick your answer
+													</div>
+													<div>
+														Then hit{" "}
+														<kbd className="px-1 py-0.5 text-xs rounded bg-muted text-primary border border-primary">
+															Enter
+														</kbd>{" "}
+														to submit
+													</div>
+												</div>
 											</TooltipContent>
 										</Tooltip>
 									</TooltipProvider>
