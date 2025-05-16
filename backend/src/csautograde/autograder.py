@@ -1,5 +1,5 @@
-from utils import Utils
-from resource_manager import ResourceManager
+from .utils import Utils
+from .resource_manager import ResourceManager
 # import yaml
 import requests
 import pandas as pd
@@ -152,10 +152,10 @@ if __name__ == "__main__":
     submissionId11 = "1a5eebdd-e3cd-43be-9b2c-cff22787a0e9"
     submissionId12 = "07f95cf4-80e3-4711-ad77-a4cefc628b3a"
     submissionId21 = "b41cadb2-9aa5-4d04-aa98-0efd12fe0b28"
-    submissionId31 = "a3dd5de4-02ba-420a-b2aa-83849b70f257"
+    submissionId31 = "bb6aeaa5-4204-4846-a027-0575b497548b"
 
     response = requests.get(
-        f"https://cseassessment.up.railway.app/submissions/{submissionId31}"
+        f"https://cseassessment.up.railway.app/submissions/{submissionId21}"
     )
 
     if response.status_code != 200:
