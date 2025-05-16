@@ -6,6 +6,13 @@ import { Label } from "@/components/ui/label";
 import { Toaster } from "@/components/ui/toaster";
 import ZoomableImage from "@/components/ZoomableImage";
 import { Checkbox } from "@/components/ui/checkbox";
+import { InfoIcon } from "lucide-react";
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipProvider,
+	TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 import { useRouter } from "next/navigation";
 import ReactMarkdown from "react-markdown";
@@ -328,8 +335,27 @@ export default function MultiChoiceClient({
 						{currentQuestion.choices && (
 							<div className="bg-white rounded-lg p-4 overflow-y-auto">
 								<div className="text-sm text-muted-foreground mb-2">
-									Press any keys to select/deselect • Press
-									Enter to submit
+									<TooltipProvider>
+										<Tooltip>
+											<TooltipTrigger className="flex items-center gap-2">
+												Keyboard shortcuts
+												<InfoIcon className="h-4 w-4 text-muted-foreground" />
+											</TooltipTrigger>
+											<TooltipContent side="right">
+												<p>
+													Press <strong>A</strong>,{" "}
+													<strong>B</strong>,{" "}
+													<strong>C</strong>,.. to
+													pick your answer.
+												</p>
+												<p>
+													Then hit{" "}
+													<strong>Enter</strong> to
+													submit!
+												</p>
+											</TooltipContent>
+										</Tooltip>
+									</TooltipProvider>
 								</div>
 
 								{isMultipleSelectionQuestion ? (
