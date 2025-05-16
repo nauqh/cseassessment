@@ -47,7 +47,21 @@ async def add_submission(data: Submission, db: DbSession):
         # Create submission record
         submission = models.Submission(**data.model_dump())
         submission.summary = summary
-        submission.feedback = summary  # Initialize feedback as copy of summary
+        
+        # Remove the Issue section from feedback
+        feedback = summary
+        issue_index = feedback.find("Issue:")
+        if issue_index != -1:
+            # Find the end of the Issue section (either the next section or end of text)
+            final_score_index = feedback.find("FINAL SCORE:")
+            if final_score_index != -1:
+                # Remove the Issue section but keep the FINAL SCORE
+                feedback = feedback[:issue_index] + feedback[final_score_index:]
+            else:
+                # If no FINAL SCORE section, just remove the Issue section to the end
+                feedback = feedback[:issue_index]
+        
+        submission.feedback = feedback  # Initialize feedback without the Issue section
         submission.score = final_score
         submission.status = "completed"
 

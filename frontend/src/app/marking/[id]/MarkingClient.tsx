@@ -182,21 +182,7 @@ export default function MarkingClient({
 		);
 
 		// Always use the current feedback value
-		let feedbackContent = feedback || submission?.summary || "";
-
-		// Remove the Issue section from the feedback
-		const issueIndex = feedbackContent.indexOf("Issue:");
-		if (issueIndex !== -1) {
-			// Find the end of the Issue section (either the next section or end of text)
-			const finalScoreIndex = feedbackContent.indexOf("FINAL SCORE:");
-			if (finalScoreIndex !== -1) {
-				// Remove the Issue section but keep the FINAL SCORE
-				feedbackContent = feedbackContent.substring(0, issueIndex) + feedbackContent.substring(finalScoreIndex);
-			} else {
-				// If no FINAL SCORE section, just remove the Issue section to the end
-				feedbackContent = feedbackContent.substring(0, issueIndex);
-			}
-		}
+		const feedbackContent = feedback || submission?.summary || "";
 
 		// Format the full feedback message
 		const fullFeedbackMessage = `
