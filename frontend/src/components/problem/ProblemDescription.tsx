@@ -4,6 +4,7 @@ import {
 	DescriptionContent,
 	ErdContent,
 	NotebookContent,
+	SqliteTutorialContent,
 } from "@/content/problem";
 
 const ProblemDescription = ({
@@ -36,6 +37,8 @@ const ProblemDescription = ({
 					<ErdContent erdName={erdName} erdImageUrl={erdImageUrl} />
 				) : name === "notebook" ? (
 					<NotebookContent notebookUrl={notebookUrl} />
+				) : name === "sqlite" ? (
+					<SqliteTutorialContent />
 				) : (
 					<div className="text-center text-gray-500">
 						No {name} available

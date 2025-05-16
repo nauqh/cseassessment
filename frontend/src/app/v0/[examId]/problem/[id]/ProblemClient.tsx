@@ -13,6 +13,7 @@ import {
 	BiPlus,
 	BiEdit,
 	BiCodeBlock,
+	BiCalendar,
 } from "react-icons/bi";
 import {
 	ResizableHandle,
@@ -35,6 +36,7 @@ import CodeOutput from "@/components/CodeOutput";
 import { EditorView } from "@codemirror/view";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import SqliteTutorialContent from "@/content/problem/SqliteTutorialContent";
 
 type OutputType = {
 	output: Record<string, string>[] | string;
@@ -504,7 +506,7 @@ export default function ProblemClient({
 							defaultValue="description"
 							className="overflow-auto [&::-webkit-scrollbar]:w-0.5 [&::-webkit-scrollbar-thumb]:bg-gray-300 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100"
 						>
-							<TabsList className="grid w-full grid-cols-2 bg-gray-50 rounded-none sticky top-0 z-10">
+							<TabsList className="grid w-full grid-cols-3 bg-gray-50 rounded-none sticky top-0 z-10">
 								<TabsTrigger
 									value="description"
 									className="hover:bg-gray-100 flex items-center gap-2"
@@ -519,6 +521,15 @@ export default function ProblemClient({
 									>
 										<BiBarChartSquare className="w-4 h-4" />
 										ERD
+									</TabsTrigger>
+								)}
+								{["M12", "M11"].includes(examId) && (
+									<TabsTrigger
+										value="sqlite"
+										className="hover:bg-gray-100 flex items-center gap-2"
+									>
+										<BiCalendar className="w-4 h-4" />
+										Date Format
 									</TabsTrigger>
 								)}
 								{language === "pandas" && (
@@ -558,6 +569,11 @@ export default function ProblemClient({
 									name="erd"
 									erdImageUrl="/chinookerd.svg"
 									erdName="Chinook"
+								/>
+							)}
+							{["M12", "M11"].includes(examId) && (
+								<ProblemDescription
+									name="sqlite"
 								/>
 							)}
 							{language === "pandas" && (
