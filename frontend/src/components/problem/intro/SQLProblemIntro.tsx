@@ -11,14 +11,12 @@ export default function SQLProblemIntro() {
 				<p>For each problem, you will need to:</p>
 				<ul className="list-disc list-inside space-y-2 ml-4">
 					<li>
-						Identify the tables and relationships needed to answer
-						the question
-					</li>
-					<li>
 						Write a single SQL query that correctly answers the
 						question
 					</li>
-					<li>Test and submit your query in the provided code editor</li>
+					<li>
+						Test and submit your query in the provided code editor
+					</li>
 				</ul>
 
 				<div className="bg-blue-50 border-l-4 border-blue-200 p-4 mt-6 space-y-3">
@@ -37,11 +35,6 @@ export default function SQLProblemIntro() {
 							</code>{" "}
 							tab for each question. You can refer to it at any
 							time while working on your solution.
-						</li>
-						<li>
-							- Make sure your query follows standard SQL syntax.
-							Your query will be evaluated against the specific
-							database for correctness.
 						</li>
 					</ul>
 				</div>
